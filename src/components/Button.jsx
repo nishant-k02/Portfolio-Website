@@ -1,16 +1,4 @@
-/**
- * Copyright 2024 Nishant Khandhar
- * @license Apache-2.0
- */
-
-/**
- * Node Modules
- */
 import PropTypes from "prop-types";
-
-/**
- * Primary Buttons
- */
 
 const ButtonPrimary = ({ href, target = "_self", label, icon, classes }) => {
   if (href) {

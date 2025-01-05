@@ -1,20 +1,5 @@
-/**
- * Copyright 2024 Nishant Khandhar
- * @license Apache-2.0
- */
-
-/**
- * Node Modeules
- */
-
 import { useState } from "react";
-
-/**
- * Components
- */
-
 import Navbar from "./Navbar";
-import Hero from "./Hero";
 
 const Header = () => {
   const [navOpen, setNavOpen] = useState(false);
@@ -25,7 +10,7 @@ const Header = () => {
         <h1>
           <a href="/" className="logo">
             <img
-              src="/images/logo.svg"
+              src="/images/profile2.png"
               width={40}
               height={40}
               alt="Nishant Khandhar"
