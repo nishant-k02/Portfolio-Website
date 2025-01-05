@@ -1,0 +1,5 @@
+<svg width="48" height="48" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+  <polygon fill="#E44D26" points="24 6 8 42 24 36 40 42 24 6"/>
+  <polygon fill="#F16529" points="24 33 24 13 35.5 39 24 33"/>
+  <text x="24" y="30" fill="#FFFFFF" font-size="12" text-anchor="middle" font-family="Arial, Helvetica, sans-serif">HTML</text>
+</svg>

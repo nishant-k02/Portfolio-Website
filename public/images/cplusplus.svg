@@ -1,0 +1,5 @@
+<svg width="48" height="48" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+  <rect width="48" height="48" fill="#00599C"/>
+  <path d="M24 12l10 8v16l-10 8-10-8V20l10-8z" fill="#FFFFFF"/>
+  <text x="24" y="32" fill="#00599C" font-size="12" text-anchor="middle" font-family="Arial, Helvetica, sans-serif">C++</text>
+</svg>

@@ -56,11 +56,6 @@ const skillItem = [
     desc: 'Programming Language',
   },
   {
-    imgSrc: '/images/numpy.svg',
-    label: 'NumPy',
-    desc: 'Data Science',
-  },
-  {
     imgSrc: '/images/cplusplus.svg',
     label: 'C++',
     desc: 'Programming Language',
@@ -79,11 +74,6 @@ const skillItem = [
     imgSrc: '/images/css3.svg',
     label: 'CSS3',
     desc: 'User Interface',
-  },
-  {
-    imgSrc: '/images/markdown.svg',
-    label: 'Markdown',
-    desc: 'Documentation',
   },
   {
     imgSrc: '/images/mysql.svg',
@@ -106,16 +96,6 @@ const skillItem = [
     desc: 'Version Control',
   },
   {
-    imgSrc: '/images/github.svg',
-    label: 'GitHub',
-    desc: 'Code Hosting',
-  },
-  {
-    imgSrc: '/images/vscode.svg',
-    label: 'VS Code',
-    desc: 'Code Editor',
-  },
-  {
     imgSrc: '/images/postman.svg',
     label: 'Postman',
     desc: 'API Testing',
@@ -134,26 +114,6 @@ const skillItem = [
     imgSrc: '/images/android.svg',
     label: 'Android',
     desc: 'Mobile Development',
-  },
-  {
-    imgSrc: '/images/atom.svg',
-    label: 'Atom',
-    desc: 'IDE',
-  },
-  {
-    imgSrc: '/images/eclipse.svg',
-    label: 'Eclipse',
-    desc: 'IDE',
-  },
-  {
-    imgSrc: '/images/pycharm.svg',
-    label: 'PyCharm',
-    desc: 'Python IDE',
-  },
-  {
-    imgSrc: '/images/intellij.svg',
-    label: 'IntelliJ',
-    desc: 'Java IDE',
   },
   {
     imgSrc: '/images/django.svg',
