@@ -1,7 +1,3 @@
-/**
- * Components
- */
-
 import SkillCard from "./SkillCard";
 
 const skillItem = [

@@ -1,7 +1,3 @@
-/**
- * Components
- */
-
 import { ButtonPrimary, ButtonOutline } from "./Button";
 
 const Hero = () => {

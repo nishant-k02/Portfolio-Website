@@ -49,7 +49,7 @@ const Footer = () => {
               Let&apos;s work together today!
             </h2>
             <ButtonPrimary
-              href={"mailto:nishantkhandharus@gmail.com"}
+              href={"mailto:nishantkhandhar.us@gmail.com"}
               label="Start Project"
               icon={"chevron_right"}
             />

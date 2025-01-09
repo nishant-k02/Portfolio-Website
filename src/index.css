@@ -2,9 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ------------------------------------- *\
- * BASE
-\* ------------------------------------- */
+
 
 html {
   scroll-behavior: smooth;
@@ -14,9 +12,7 @@ body {
   @apply bg-zinc-900 text-zinc-50;
 }
 
-/* ------------------------------------- *\
- * Typography
-\* ------------------------------------- */
+
 
 .headline-1,
 .headline-2 {
@@ -38,9 +34,7 @@ body {
   @apply text-[22px] font-normal lg:text-3xl;
 }
 
-/* ------------------------------------- *\
- * UTILITIES
-\* ------------------------------------- */
+
 
 .material-symbols-rounded {
   @apply w-[1em] h-[1em] overflow-hidden;
@@ -63,9 +57,7 @@ body {
   @apply pt-20 lg:pt-32;
 }
 
-/* ------------------------------------- *\
- * COMPONENTS
-\* ------------------------------------- */
+
 
 /* Menu Button */
 

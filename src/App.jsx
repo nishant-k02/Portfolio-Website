@@ -1,7 +1,3 @@
-/**
- * Components
- */
-
 import { ReactLenis } from "lenis/react";
 
 import Header from "./components/Header";
