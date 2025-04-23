@@ -15,11 +15,30 @@ const works = [
     projectLink: "https://github.com/nishant-k02/BE-Project.git",
   },
   {
+    imgSrc: "/images/project7.jpg",
+    title: "SunWise",
+    tags: ["React", "ML", "Google Maps API"],
+    projectLink:
+      "https://github.com/nishant-k02/SunWise_Scarlet_Hawks_Hackathon_2025.git",
+  },
+  {
     imgSrc: "/images/project3.jpeg",
     title: "Smart Homes Web App",
     tags: ["JSP", "MongoDB", "MySQL"],
     projectLink:
       "https://github.com/nishant-k02/Enterprise-Web-Applications.git",
+  },
+  {
+    imgSrc: "/images/project8.jpeg",
+    title: "BlogBoard",
+    tags: ["React", "ElasticSearch", "OpenAI"],
+    projectLink: "https://github.com/nishant-k02/School-Blogging-Website.git",
+  },
+  {
+    imgSrc: "/images/project9.jpg",
+    title: "Sportify",
+    tags: ["React", "MongoDB", "OpenAI"],
+    projectLink: "https://github.com/nishant-k02/Sportify.git",
   },
   {
     imgSrc: "/images/project4.jpg",
