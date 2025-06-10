@@ -6,19 +6,26 @@ const Navbar = ({ navOpen }) => {
   const activeBox = useRef();
 
   const initActiveBox = () => {
+    if (!activeBox.current || !lastActiveLink.current) return;
+
     activeBox.current.style.top = lastActiveLink.current.offsetTop + "px";
     activeBox.current.style.left = lastActiveLink.current.offsetLeft + "px";
     activeBox.current.style.width = lastActiveLink.current.offsetWidth + "px";
     activeBox.current.style.height = lastActiveLink.current.offsetHeight + "px";
   };
 
-  useEffect(initActiveBox, []);
-  window.addEventListener("resize", initActiveBox);
+  useEffect(() => {
+    initActiveBox();
+    window.addEventListener("resize", initActiveBox);
+    return () => window.removeEventListener("resize", initActiveBox);
+  }, []);
 
   const activeCurrentLink = (event) => {
     lastActiveLink.current?.classList.remove("active");
     event.target.classList.add("active");
     lastActiveLink.current = event.target;
+
+    if (!activeBox.current) return;
 
     activeBox.current.style.top = event.target.offsetTop + "px";
     activeBox.current.style.left = event.target.offsetLeft + "px";
@@ -48,7 +55,6 @@ const Navbar = ({ navOpen }) => {
       link: "#work",
       className: "nav-link",
     },
-
     {
       label: "Contact",
       link: "#contact",

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import ProjectCard from "./ProjectCard";
 
 const works = [
@@ -11,7 +11,7 @@ const works = [
   {
     imgSrc: "/images/project2.jpg",
     title: "Car Damage Detection",
-    tags: ["Python", "Django", "Tensorflow"],
+    tags: ["Django", "Tensorflow"],
     projectLink: "https://github.com/nishant-k02/BE-Project.git",
   },
   {
@@ -48,34 +48,113 @@ const works = [
   },
   {
     imgSrc: "/images/project5.jpg",
-    title: "Online Code Editor",
-    tags: ["React", "Bootstrap", "Codemirror", "HTML", "CSS", "JS"],
+    title: "Code Editor",
+    tags: ["React", "Bootstrap", "Codemirror"],
     projectLink: "https://code-editor-ten-inky.vercel.app/",
   },
   {
     imgSrc: "/images/project6.jpg",
     title: "Android Weather App",
-    tags: ["Android", "Java", "API", "JSON"],
+    tags: ["Android", "Java", "API"],
     projectLink: "https://github.com/nishant-k02/Android-Weather-App.git",
   },
 ];
 
 const Work = () => {
+  const scrollContainerRef = useRef(null);
+
+  const scrollLeft = () => {
+    if (scrollContainerRef.current) {
+      scrollContainerRef.current.scrollBy({ left: -350, behavior: "smooth" });
+    }
+  };
+
+  const scrollRight = () => {
+    if (scrollContainerRef.current) {
+      scrollContainerRef.current.scrollBy({ left: 350, behavior: "smooth" });
+    }
+  };
+
   return (
     <section id="work" className="section">
-      <div className="container">
+      <div className="container relative">
         <h2 className="headline-2 mb-8">My Portfolio Highlights</h2>
 
-        <div className="grid gap-x-4 gap-y-5 grid-cols-[repeat(auto-fill,minmax(280px,1fr))]">
-          {works.map(({ imgSrc, title, tags, projectLink }, key) => (
-            <ProjectCard
-              key={key}
-              imgSrc={imgSrc}
-              title={title}
-              tags={tags}
-              projectLink={projectLink}
-            />
-          ))}
+        {/* Scroll Buttons - visible only md and up */}
+        <button
+          onClick={scrollLeft}
+          aria-label="Scroll Left"
+          className="
+            hidden md:flex
+            absolute left-2 top-1/2 -translate-y-1/2
+            z-10
+            w-10 h-10
+            bg-zinc-700 hover:bg-zinc-600
+            text-white rounded-full
+            items-center justify-center
+            shadow-lg
+            select-none
+          "
+        >
+          <span className="material-symbols-rounded">chevron_left</span>
+        </button>
+
+        <button
+          onClick={scrollRight}
+          aria-label="Scroll Right"
+          className="
+            hidden md:flex
+            absolute right-2 top-1/2 -translate-y-1/2
+            z-10
+            w-10 h-10
+            bg-zinc-700 hover:bg-zinc-600
+            text-white rounded-full
+            items-center justify-center
+            shadow-lg
+            select-none
+          "
+        >
+          <span className="material-symbols-rounded">chevron_right</span>
+        </button>
+
+        {/* Frame with equal vertical padding on md+ screens */}
+        <div className="relative md:border-2 md:border-zinc-700 md:rounded-2xl md:px-4 md:py-4">
+          {/* Scrollable Projects */}
+          <div
+            ref={scrollContainerRef}
+            className="overflow-x-auto scrollbar-hide"
+            style={{ scrollPaddingLeft: "1rem", scrollPaddingRight: "1rem" }}
+          >
+            <div
+              className="
+                flex gap-6
+                snap-x snap-mandatory
+                scroll-smooth
+                min-w-max
+              "
+            >
+              {works.map(({ imgSrc, title, tags, projectLink }, key) => (
+                <div
+                  key={key}
+                  className="
+                    flex-shrink-0
+                    snap-center
+                    w-[90vw]          /* Small screens: 90% viewport width */
+                    sm:w-[45vw]       /* Small+ screens: ~2 cards */
+                    md:w-[30vw]       /* Medium+ screens: ~3 cards */
+                    max-w-[320px]     /* Max width so cards don't get too wide */
+                  "
+                >
+                  <ProjectCard
+                    imgSrc={imgSrc}
+                    title={title}
+                    tags={tags}
+                    projectLink={projectLink}
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </section>
