@@ -9,6 +9,12 @@ const works = [
     projectLink: "https://github.com/nishant-k02/HealthCareAIAssistant.git",
   },
   {
+    imgSrc: "/images/project10.jpg",
+    title: "ShopHub – AI-Powered E-commerce Platform",
+    tags: ["NextJS", "LangChain", "OpenAI"],
+    projectLink: "https://shop-hub-ecommerce.vercel.app",
+  },
+  {
     imgSrc: "/images/project2.jpg",
     title: "Car Damage Detection",
     tags: ["Django", "Tensorflow"],
@@ -20,13 +26,6 @@ const works = [
     tags: ["React", "ML", "Google Maps API"],
     projectLink:
       "https://github.com/nishant-k02/SunWise_Scarlet_Hawks_Hackathon_2025.git",
-  },
-  {
-    imgSrc: "/images/project3.jpeg",
-    title: "Smart Homes Web App",
-    tags: ["JSP", "MongoDB", "MySQL"],
-    projectLink:
-      "https://github.com/nishant-k02/Enterprise-Web-Applications.git",
   },
   {
     imgSrc: "/images/project8.jpeg",
@@ -45,6 +44,13 @@ const works = [
     title: "Covid Stats. Analyzer",
     tags: ["Python", "API", "PowerBI"],
     projectLink: "https://github.com/nishant-k02/Covid-Dashboard-Project.git",
+  },
+    {
+    imgSrc: "/images/project3.jpeg",
+    title: "Smart Homes Web App",
+    tags: ["JSP", "MongoDB", "MySQL"],
+    projectLink:
+      "https://github.com/nishant-k02/Enterprise-Web-Applications.git",
   },
   {
     imgSrc: "/images/project5.jpg",
@@ -78,25 +84,33 @@ const Work = () => {
   return (
     <section id="work" className="section">
       <div className="container relative">
-        <h2 className="headline-2 mb-8">My Portfolio Highlights</h2>
+        {/* Enhanced Header */}
+        <div className="text-center mb-12">
+          <h2 className="headline-2 mb-4 bg-gradient-to-r from-sky-400 to-blue-400 bg-clip-text text-transparent">
+            My Portfolio Highlights
+          </h2>
+        </div>
 
-        {/* Scroll Buttons - visible only md and up */}
+        {/* Enhanced Scroll Buttons */}
         <button
           onClick={scrollLeft}
           aria-label="Scroll Left"
           className="
             hidden md:flex
-            absolute left-2 top-1/2 -translate-y-1/2
-            z-10
-            w-10 h-10
-            bg-zinc-700 hover:bg-zinc-600
+            absolute left-0 top-1/2 -translate-y-1/2
+            z-20
+            w-12 h-12
+            bg-gradient-to-r from-zinc-700 to-zinc-600 
+            hover:from-zinc-600 hover:to-zinc-500
             text-white rounded-full
             items-center justify-center
-            shadow-lg
-            select-none
+            shadow-xl hover:shadow-2xl
+            transform hover:scale-105
+            transition-all duration-200
+            border border-zinc-500/20
           "
         >
-          <span className="material-symbols-rounded">chevron_left</span>
+          <span className="material-symbols-rounded text-xl">chevron_left</span>
         </button>
 
         <button
@@ -104,26 +118,29 @@ const Work = () => {
           aria-label="Scroll Right"
           className="
             hidden md:flex
-            absolute right-2 top-1/2 -translate-y-1/2
-            z-10
-            w-10 h-10
-            bg-zinc-700 hover:bg-zinc-600
+            absolute right-0 top-1/2 -translate-y-1/2
+            z-20
+            w-12 h-12
+            bg-gradient-to-r from-zinc-700 to-zinc-600 
+            hover:from-zinc-600 hover:to-zinc-500
             text-white rounded-full
             items-center justify-center
-            shadow-lg
-            select-none
+            shadow-xl hover:shadow-2xl
+            transform hover:scale-105
+            transition-all duration-200
+            border border-zinc-500/20
           "
         >
-          <span className="material-symbols-rounded">chevron_right</span>
+          <span className="material-symbols-rounded text-xl">chevron_right</span>
         </button>
 
-        {/* Frame with equal vertical padding on md+ screens */}
-        <div className="relative md:border-2 md:border-zinc-700 md:rounded-2xl md:px-4 md:py-4">
-          {/* Scrollable Projects */}
+        {/* Enhanced Frame with gradient border */}
+        <div className="relative md:border md:border-zinc-600/50 md:rounded-3xl md:p-6 md:bg-gradient-to-br md:from-zinc-800/30 md:to-zinc-900/30 md:backdrop-blur-sm">
+          {/* Projects Grid/Scroll Container */}
           <div
             ref={scrollContainerRef}
             className="overflow-x-auto scrollbar-hide"
-            style={{ scrollPaddingLeft: "1rem", scrollPaddingRight: "1rem" }}
+            style={{ scrollPaddingLeft: "1.5rem", scrollPaddingRight: "1.5rem" }}
           >
             <div
               className="
@@ -131,6 +148,7 @@ const Work = () => {
                 snap-x snap-mandatory
                 scroll-smooth
                 min-w-max
+                pb-2
               "
             >
               {works.map(({ imgSrc, title, tags, projectLink }, key) => (
@@ -139,10 +157,12 @@ const Work = () => {
                   className="
                     flex-shrink-0
                     snap-center
-                    w-[90vw]          /* Small screens: 90% viewport width */
-                    sm:w-[45vw]       /* Small+ screens: ~2 cards */
-                    md:w-[30vw]       /* Medium+ screens: ~3 cards */
-                    max-w-[320px]     /* Max width so cards don't get too wide */
+                    w-[85vw]          /* Small screens: 85% viewport width */
+                    sm:w-[42vw]       /* Small+ screens: ~2 cards */
+                    md:w-[28vw]       /* Medium+ screens: ~3 cards */
+                    lg:w-[22vw]       /* Large screens: ~4 cards */
+                    max-w-[300px]     /* Max width constraint */
+                    min-w-[280px]     /* Min width constraint */
                   "
                 >
                   <ProjectCard
@@ -150,11 +170,19 @@ const Work = () => {
                     title={title}
                     tags={tags}
                     projectLink={projectLink}
+                    classes="hover:transform hover:scale-[1.02] transition-transform duration-200"
                   />
                 </div>
               ))}
             </div>
           </div>
+        </div>
+
+        {/* Project Counter */}
+        <div className="text-center mt-8">
+          <p className="text-zinc-500 text-sm">
+            <span className="text-sky-400 font-semibold">{works.length}</span> projects and counting...
+          </p>
         </div>
       </div>
     </section>

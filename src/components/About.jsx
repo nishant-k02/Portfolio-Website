@@ -4,8 +4,8 @@ const aboutItems = [
     number: 15,
   },
   {
-    label: "Years of experience",
-    number: 3,
+    label: "Year of experience",
+    number: 1,
   },
 ];
 

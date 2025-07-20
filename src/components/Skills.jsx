@@ -141,6 +141,16 @@ const skillItem = [
     label: "Figma",
     desc: "Design Tool",
   },
+  {
+    imgSrc: "/images/openai.svg",
+    label: "OpenAI",
+    desc: "LLM",
+  },
+  {
+    imgSrc: "/images/langgraph.png",
+    label: "LangGraph",
+    desc: "LLM",
+  },
 ];
 
 const Skills = () => {
