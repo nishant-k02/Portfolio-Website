@@ -1,18 +1,37 @@
-FROM node:14
+# Use Node.js 20 Alpine for smaller image size
+FROM node:20-alpine AS build
 
+# Set working directory
 WORKDIR /app
 
+# Copy package files
 COPY package*.json ./
 
-RUN npm install
+# Install dependencies
+RUN npm ci
 
+# Copy source code
 COPY . .
 
+# Build the application
 RUN npm run build
 
-RUN npm install -g serve
+# Production stage
+FROM nginx:alpine
 
-EXPOSE 3000
+# Copy built files to nginx
+COPY --from=build /app/dist /usr/share/nginx/html
 
-CMD [ "serve", "-s", "build", "-l", "3000" ]
+# Fix permissions for static files
+RUN find /usr/share/nginx/html -type f -exec chmod 644 {} \;
+RUN find /usr/share/nginx/html -type d -exec chmod 755 {} \;
+
+# Copy nginx configuration
+COPY nginx.conf /etc/nginx/nginx.conf
+
+# Expose port 80
+EXPOSE 80
+
+# Start nginx
+CMD ["nginx", "-g", "daemon off;"]
 
