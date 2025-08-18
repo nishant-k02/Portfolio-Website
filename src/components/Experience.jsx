@@ -6,7 +6,7 @@ const experienceData = [
     position: "Software Developer Intern - Full Stack Developer",
     company: "Find Me LLC",
     location: "Charlotte, NC (Remote)",
-    duration: "Present",
+    duration: "May 2025 – Aug 2025",
     responsibilities: [
       "Built and maintained the backend for secure user portfolios with 6+ personalized pages using Node.js and Express.js",
       "Implemented JWT-based authentication for user-specific access control and applied robust Joi validation, reducing invalid API requests by 40% and improving data integrity",
