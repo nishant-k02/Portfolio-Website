@@ -5,6 +5,10 @@ const Hero = () => {
     <section id="home" className="pt-28 lg:pt-36">
       <div className="container items-center lg:grid lg:grid-cols-2 lg:gap-10">
         <div>
+          <h1 className="text-2xl font-semibold text-zinc-900 dark:text-zinc-50 mb-3">
+            Nishant Khandhar
+          </h1>
+          
           <div className="flex items-center gap-3">
             <div className=" flex items-center gap-1.5 text-zinc-400 text-sm tracking-wide">
               <span className="relative w-2 h-2 rounded-full bg-emerald-400">
