@@ -81,7 +81,7 @@ const Contact = () => {
       <div className="container lg:grid lg:grid-cols-2 lg:items-stretch">
         <div className="mb-12 lg:mb-0 lg:flex lg:flex-col">
           <h2 className="headline-2 lg:max-w-[12ch]">Contact Me</h2>
-          <p className="text-zinc-400 mt-3 mb-8 max-w-[50ch] lg:max-w-[30ch]:">
+          <p className="text-zinc-600 dark:text-zinc-400 mt-3 mb-8 max-w-[50ch] lg:max-w-[30ch]:">
             Reach out to me through any of the following platforms. I'm always
             open to new opportunities and collaborations.
           </p>
@@ -91,7 +91,7 @@ const Contact = () => {
                 key={key}
                 href={href}
                 target="_blank"
-                className="w-12 h-12 grid place-items-center ring-inset ring-2 ring-zinc-50/5 rounded-lg transition-[background-color, color] hover:bg-zinc-50 hover:text-zinc-900 active:bg-zinc-50/80"
+                className="w-12 h-12 grid place-items-center ring-inset ring-2 ring-zinc-900/10 dark:ring-zinc-50/5 rounded-lg transition-[background-color, color] hover:bg-zinc-900 hover:text-zinc-50 dark:hover:bg-zinc-50 dark:hover:text-zinc-900 active:bg-zinc-900/80 dark:active:bg-zinc-50/80"
               >
                 {icon}
               </a>

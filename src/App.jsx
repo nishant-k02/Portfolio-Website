@@ -9,22 +9,25 @@ import Skills from "./components/Skills";
 import Work from "./components/Work";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
+import { ThemeProvider } from "./contexts/ThemeContext";
 
 const App = () => {
   return (
-    <ReactLenis root>
-      <Header />
-      <main>
-        <Hero />
-        <About />
-        <Education />
-        <Experience />
-        <Skills />
-        <Work />
-        <Contact />
-      </main>
-      <Footer />
-    </ReactLenis>
+    <ThemeProvider>
+      <ReactLenis root>
+        <Header />
+        <main>
+          <Hero />
+          <About />
+          <Education />
+          <Experience />
+          <Skills />
+          <Work />
+          <Contact />
+        </main>
+        <Footer />
+      </ReactLenis>
+    </ThemeProvider>
   );
 };
 

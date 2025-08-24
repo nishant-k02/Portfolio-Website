@@ -5,7 +5,7 @@ const ProjectCard = ({ imgSrc, title, tags, projectLink, classes }) => {
   return (
     <div
       className={
-        "relative p-6 rounded-2xl bg-zinc-800 hover:bg-zinc-700/50 active:bg-zinc-700/60 ring-1 ring-inset ring-zinc-50/5 transition-colors h-[420px] flex flex-col" +
+        "relative p-6 rounded-2xl bg-zinc-100 hover:bg-zinc-200/50 active:bg-zinc-200/80 dark:bg-zinc-800 dark:hover:bg-zinc-700/50 dark:active:bg-zinc-700/60 ring-1 ring-inset ring-zinc-900/10 dark:ring-zinc-50/5 transition-colors h-[420px] flex flex-col" +
         (classes ? " " + classes : "")
       }
     >
@@ -15,12 +15,12 @@ const ProjectCard = ({ imgSrc, title, tags, projectLink, classes }) => {
 
       <div className="flex flex-col flex-grow">
         <div className="flex-grow">
-          <h3 className="title-1 mb-3 line-clamp-2 min-h-[3.5rem] leading-tight">{title}</h3>
+          <h3 className="title-1 mb-3 line-clamp-2 min-h-[3.5rem] leading-tight text-zinc-900 dark:text-zinc-50">{title}</h3>
           <div className="flex flex-wrap items-center gap-2 mb-4">
             {tags.map((label, key) => (
               <span
                 key={key}
-                className="h-8 text-sm text-zinc-400 bg-zinc-50/5 grid items-center px-3 rounded-lg whitespace-nowrap"
+                className="h-8 text-sm text-zinc-600 dark:text-zinc-400 bg-zinc-900/10 dark:bg-zinc-50/5 grid items-center px-3 rounded-lg whitespace-nowrap"
               >
                 {label}
               </span>

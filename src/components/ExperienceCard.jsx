@@ -5,7 +5,7 @@ const ExperienceCard = ({ position, company, location, duration, responsibilitie
   return (
     <div
       className={
-        "relative p-6 rounded-2xl bg-zinc-800 hover:bg-zinc-700/50 active:bg-zinc-700/60 ring-1 ring-inset ring-zinc-50/5 transition-colors flex flex-col" +
+        "relative p-6 rounded-2xl bg-zinc-100 hover:bg-zinc-200/50 active:bg-zinc-200/80 dark:bg-zinc-800 dark:hover:bg-zinc-700/50 dark:active:bg-zinc-700/60 ring-1 ring-inset ring-zinc-900/10 dark:ring-zinc-50/5 transition-colors flex flex-col" +
         (classes ? " " + classes : "")
       }
     >
@@ -19,23 +19,23 @@ const ExperienceCard = ({ position, company, location, duration, responsibilitie
       <div className="flex flex-col flex-grow">
         <div className="flex-grow">
           {/* Position Title */}
-          <h3 className="title-1 mb-2 line-clamp-2 leading-tight text-zinc-50">
+          <h3 className="title-1 mb-2 line-clamp-2 leading-tight text-zinc-900 dark:text-zinc-50">
             {position}
           </h3>
           
           {/* Company Name */}
-          <p className="text-lg font-medium text-emerald-400 mb-2">
+          <p className="text-lg font-medium text-emerald-600 dark:text-emerald-400 mb-2">
             {company}
           </p>
           
           {/* Location */}
-          <p className="text-sm text-zinc-400 mb-2 flex items-center gap-1">
+          <p className="text-sm text-zinc-600 dark:text-zinc-400 mb-2 flex items-center gap-1">
             <span className="material-symbols-rounded text-sm">location_on</span>
             {location}
           </p>
           
           {/* Duration */}
-          <p className="text-sm text-zinc-400 mb-4 flex items-center gap-1">
+          <p className="text-sm text-zinc-600 dark:text-zinc-400 mb-4 flex items-center gap-1">
             <span className="material-symbols-rounded text-sm">schedule</span>
             {duration}
           </p>
@@ -43,14 +43,14 @@ const ExperienceCard = ({ position, company, location, duration, responsibilitie
           {/* Responsibilities */}
           {responsibilities && responsibilities.length > 0 && (
             <div className="mb-4">
-              <h4 className="text-sm font-medium text-zinc-300 mb-2">Key Achievements:</h4>
+              <h4 className="text-sm font-medium text-zinc-700 dark:text-zinc-300 mb-2">Key Achievements:</h4>
               <ul className="space-y-2">
                 {responsibilities.map((responsibility, index) => (
                   <li
                     key={index}
-                    className="text-sm text-zinc-400 leading-relaxed flex items-start gap-2"
+                    className="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed flex items-start gap-2"
                   >
-                    <span className="text-emerald-400 text-xs mt-1.5">•</span>
+                    <span className="text-emerald-600 dark:text-emerald-400 text-xs mt-1.5">•</span>
                     <span>{responsibility}</span>
                   </li>
                 ))}
@@ -61,12 +61,12 @@ const ExperienceCard = ({ position, company, location, duration, responsibilitie
           {/* Tech Stack */}
           {techStack && techStack.length > 0 && (
             <div className="mb-4">
-              <h4 className="text-sm font-medium text-zinc-300 mb-2">Tech Stack:</h4>
+              <h4 className="text-sm font-medium text-zinc-700 dark:text-zinc-300 mb-2">Tech Stack:</h4>
               <div className="flex flex-wrap gap-1">
                 {techStack.map((tech, index) => (
                   <span
                     key={index}
-                    className="text-xs text-zinc-400 bg-zinc-50/5 px-2 py-1 rounded-md whitespace-nowrap"
+                    className="text-xs text-zinc-600 dark:text-zinc-400 bg-zinc-900/10 dark:bg-zinc-50/5 px-2 py-1 rounded-md whitespace-nowrap"
                   >
                     {tech}
                   </span>

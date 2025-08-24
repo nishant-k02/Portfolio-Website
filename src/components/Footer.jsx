@@ -11,6 +11,18 @@ const sitemap = [
     href: "#about",
   },
   {
+    label: "Education",
+    href: "#education",
+  },
+  {
+    label: "Experience",
+    href: "#experience",
+  },
+  {
+    label: "Skills",
+    href: "#skills",
+  },
+  {
     label: "Projects",
     href: "#work",
   },
@@ -56,13 +68,13 @@ const Footer = () => {
           </div>
           <div className="grid grid-cols-2 gap-4 lg:pl-20">
             <div>
-              <p className="mb-2">Sitemap</p>
+              <p className="mb-2 text-zinc-700 dark:text-zinc-300 font-medium">Sitemap</p>
               <ul>
                 {sitemap.map(({ label, href }, key) => (
                   <li key={key}>
                     <a
                       href={href}
-                      className="block text-sm text-zinc-400 py-1 transition-colors hover:text-zinc-200"
+                      className="block text-sm text-zinc-600 dark:text-zinc-400 py-1 transition-colors hover:text-zinc-900 dark:hover:text-zinc-200"
                     >
                       {label}
                     </a>
@@ -72,14 +84,14 @@ const Footer = () => {
             </div>
 
             <div>
-              <p className="mb-2">Socials</p>
+              <p className="mb-2 text-zinc-700 dark:text-zinc-300 font-medium">Socials</p>
               <ul>
                 {socials.map(({ label, href }, key) => (
                   <li key={key}>
                     <a
                       href={href}
                       target="_blank"
-                      className="block text-sm text-zinc-400 py-1 transition-colors hover:text-zinc-200"
+                      className="block text-sm text-zinc-600 dark:text-zinc-400 py-1 transition-colors hover:text-zinc-900 dark:hover:text-zinc-200"
                     >
                       {label}
                     </a>
@@ -90,11 +102,17 @@ const Footer = () => {
           </div>
         </div>
         <div className="flex items-center justify-between pt-10 mb-8">
-          <a href="" className="">
-            <img src="images/logo.svg" width={40} height={40} alt="Logo" />
+          <a href="/" className="">
+            <img 
+              src="/images/logo.svg" 
+              width={40} 
+              height={40} 
+              alt="Logo"
+              className="brightness-0 dark:brightness-100 transition-all duration-300"
+            />
           </a>
-          <p className="text-zinc-500 text-sm">
-            &copy; 2025 <span className="text-zinc-200">Nishant Khandhar</span>
+          <p className="text-zinc-600 dark:text-zinc-500 text-sm">
+            &copy; 2025 <span className="text-zinc-900 dark:text-zinc-200 font-medium">Nishant Khandhar</span>
           </p>
         </div>
       </div>

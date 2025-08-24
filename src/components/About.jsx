@@ -13,8 +13,8 @@ const About = () => {
   return (
     <section id="about" className="section">
       <div className="container">
-        <div className=" bg-zinc-800/50 p-7 rounded-2xl md:p-12">
-          <p className="text-zinc-300 mb-4 md:mb-8 md:text-xl md:max-w-[60ch]">
+        <div className="bg-zinc-100/50 dark:bg-zinc-800/50 p-7 rounded-2xl md:p-12 ring-1 ring-inset ring-zinc-900/10 dark:ring-zinc-50/5">
+          <p className="text-zinc-700 dark:text-zinc-300 mb-4 md:mb-8 md:text-xl md:max-w-[60ch]">
             Hello! I&apos;m Nishant, I am a dedicated and ambitious Master's in
             Computer Science student at the Illinois Institute of Technology,
             Chicago, with a strong passion for software development. My
@@ -35,7 +35,7 @@ const About = () => {
                     +
                   </span>
                 </div>
-                <p className="text-sm text-zinc-400">{label}</p>
+                <p className="text-sm text-zinc-600 dark:text-zinc-400">{label}</p>
               </div>
             ))}
             <img
@@ -43,7 +43,7 @@ const About = () => {
               alt="Logo"
               width={30}
               height={30}
-              className="ml-auto md:w-[40px] md:h-[40px]"
+              className="ml-auto md:w-[40px] md:h-[40px] brightness-0 dark:brightness-100 transition-all duration-300"
             />
           </div>
         </div>

@@ -100,9 +100,11 @@ const Work = () => {
             absolute left-0 top-1/2 -translate-y-1/2
             z-20
             w-12 h-12
-            bg-gradient-to-r from-zinc-700 to-zinc-600 
-            hover:from-zinc-600 hover:to-zinc-500
-            text-white rounded-full
+            bg-gradient-to-r from-zinc-300 to-zinc-400
+            hover:from-zinc-400 hover:to-zinc-500
+            dark:from-zinc-700 dark:to-zinc-600 
+            dark:hover:from-zinc-600 dark:hover:to-zinc-500
+            text-zinc-900 dark:text-white rounded-full
             items-center justify-center
             shadow-xl hover:shadow-2xl
             transform hover:scale-105
@@ -121,9 +123,11 @@ const Work = () => {
             absolute right-0 top-1/2 -translate-y-1/2
             z-20
             w-12 h-12
-            bg-gradient-to-r from-zinc-700 to-zinc-600 
-            hover:from-zinc-600 hover:to-zinc-500
-            text-white rounded-full
+            bg-gradient-to-r from-zinc-300 to-zinc-400
+            hover:from-zinc-400 hover:to-zinc-500
+            dark:from-zinc-700 dark:to-zinc-600 
+            dark:hover:from-zinc-600 dark:hover:to-zinc-500
+            text-zinc-900 dark:text-white rounded-full
             items-center justify-center
             shadow-xl hover:shadow-2xl
             transform hover:scale-105

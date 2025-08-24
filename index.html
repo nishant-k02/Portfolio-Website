@@ -1,6 +1,54 @@
 <!doctype html>
-<html lang="en" class="scrollbar-thin scrollbar-track-zinc-800 scrollbar-thumb-zinc-500">
+<html lang="en" class="dark scrollbar-thin scrollbar-track-zinc-800 scrollbar-thumb-zinc-500">
   <head>
+    <!-- Theme initialization script - MUST be first -->
+    <script>
+      (function() {
+        try {
+          // Get saved theme or default to dark
+          const savedTheme = localStorage.getItem('theme');
+          const isDark = savedTheme ? savedTheme === 'dark' : true; // Default to dark
+          
+          // Force remove any existing classes first
+          document.documentElement.classList.remove('dark');
+          
+          // Apply theme class immediately to prevent flash
+          if (isDark) {
+            document.documentElement.classList.add('dark');
+          }
+          
+          // Set a data attribute as backup identifier
+          document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
+          
+        } catch (e) {
+          // Fallback to dark theme if localStorage fails
+          document.documentElement.classList.remove('dark');
+          document.documentElement.classList.add('dark');
+          document.documentElement.setAttribute('data-theme', 'dark');
+        }
+      })();
+    </script>
+    
+    <!-- Critical CSS for immediate theme application -->
+    <style>
+      /* Immediate dark theme styles to prevent any flash */
+      html.dark {
+        background-color: #18181b !important;
+        color: #fafafa !important;
+      }
+      html:not(.dark) {
+        background-color: #ffffff !important;
+        color: #18181b !important;
+      }
+      body {
+        transition: none !important;
+      }
+      /* Apply transition after a brief delay */
+      .theme-loaded body {
+        transition: background-color 0.3s ease, color 0.3s ease !important;
+      }
+    </style>
+    
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Nishant Khandhar - Software Engineer</title>
