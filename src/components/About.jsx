@@ -13,38 +13,72 @@ const About = () => {
   return (
     <section id="about" className="section">
       <div className="container">
-        <div className="bg-zinc-100/50 dark:bg-zinc-800/50 p-7 rounded-2xl md:p-12 ring-1 ring-inset ring-zinc-900/10 dark:ring-zinc-50/5">
-          <p className="text-zinc-700 dark:text-zinc-300 mb-4 md:mb-8 md:text-xl md:max-w-[60ch]">
-            Hello! I&apos;m Nishant, I am a dedicated and ambitious Master's in
-            Computer Science student at the Illinois Institute of Technology,
-            Chicago, with a strong passion for software development. My
-            expertise spans Python, Java, C++, HTML, CSS, JavaScript, and React,
-            Node, Express providing me with a solid foundation to tackle complex
-            problems and drive innovation in the tech industry. I am actively
-            seeking opportunities for networking, collaboration, and
-            professional growth that align with my skills and interests.
-          </p>
-          <div className="flex flex-wrap items-center gap-4 md:gap-7">
-            {aboutItems.map(({ label, number }, key) => (
-              <div key={key}>
-                <div className="flrx items-center md:mb-2">
-                  <span className="text-2xl font-semibold md:text-4xl">
-                    {number}
-                  </span>
-                  <span className="text-sky-400 font-semibold md:text-3xl">
-                    +
-                  </span>
-                </div>
-                <p className="text-sm text-zinc-600 dark:text-zinc-400">{label}</p>
+        {/* About Card */}
+        <div className="max-w-6xl mx-auto">
+          <div className="relative p-6 rounded-2xl border border-zinc-200 dark:border-zinc-700 bg-white/80 dark:bg-zinc-900/80 backdrop-blur-sm hover:border-emerald-300 dark:hover:border-emerald-600 hover:shadow-xl hover:shadow-emerald-500/10 transition-all duration-300 group">
+            
+            {/* Header with Icon */}
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-emerald-400 to-sky-500 flex items-center justify-center">
+                <span className="material-symbols-rounded text-white text-2xl">person</span>
               </div>
-            ))}
-            <img
-              src="/images/logo.svg"
-              alt="Logo"
-              width={30}
-              height={30}
-              className="ml-auto md:w-[40px] md:h-[40px] brightness-0 dark:brightness-100 transition-all duration-300"
-            />
+              <div>
+                <h3 className="text-xl font-semibold text-zinc-900 dark:text-zinc-50 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">
+                  Software Developer & AI Enthusiast
+                </h3>
+                <p className="text-emerald-600 dark:text-emerald-400 font-medium">
+                  Full-Stack • Cloud Architecture • AI-Driven Systems
+                </p>
+              </div>
+            </div>
+
+            {/* About Content */}
+            <div className="space-y-4 mb-6">
+              <p className="text-sm text-zinc-700 dark:text-zinc-300 leading-relaxed text-justify">
+                Hello! I&apos;m Nishant, a passionate and adaptive software developer who specializes in full-stack application design, AI-driven systems, 
+                and scalable cloud architectures. With hands-on experience across modern technologies such as React, Next.js, Node.js, Flask, and MongoDB, 
+                I focus on building solutions that merge technical precision with user-centric design. My work spans web, mobile, and intelligent automation 
+                systems—leveraging tools like LangChain, OpenAI, and Azure to create products that enhance usability, reliability, and decision intelligence.
+              </p>
+              
+              <p className="text-sm text-zinc-700 dark:text-zinc-300 leading-relaxed text-justify">
+                Having contributed to high-impact projects like an AI-powered healthcare assistant and an e-commerce platform with real-time chatbot integration, 
+                I enjoy translating complex ideas into elegant, deployable solutions. My recent work strengthened my skills in backend architecture, REST API optimization, 
+                and cross-platform development. Currently pursuing my Master&apos;s in Computer Science at the Illinois Institute of Technology (GPA 3.83), I aim to continue 
+                advancing in software innovation—crafting intelligent, efficient, and secure systems that empower users and businesses alike.
+              </p>
+            </div>
+
+            {/* Stats and Logo */}
+            <div className="flex flex-wrap items-center justify-between gap-6 pt-4 border-t border-zinc-200 dark:border-zinc-700">
+              <div className="flex flex-wrap items-center gap-6">
+                {aboutItems.map(({ label, number }, key) => (
+                  <div key={key} className="text-center">
+                    <div className="flex items-center justify-center mb-1">
+                      <span className="text-2xl font-semibold text-zinc-900 dark:text-zinc-50 md:text-3xl">
+                        {number}
+                      </span>
+                      <span className="text-emerald-500 font-semibold md:text-2xl">
+                        +
+                      </span>
+                    </div>
+                    <p className="text-xs text-zinc-600 dark:text-zinc-400 font-medium">{label}</p>
+                  </div>
+                ))}
+              </div>
+              
+              <div className="flex items-center justify-end">
+                <div className="w-10 h-10 rounded-lg grid place-items-center bg-emerald-400 text-zinc-950 shrink-0 hover:bg-emerald-300 transition-colors">
+                  <img
+                    src="/images/logo.svg"
+                    alt="Logo"
+                    width={24}
+                    height={24}
+                    className="brightness-0 transition-all duration-300"
+                  />
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

@@ -1,7 +1,7 @@
 import { useRef, useEffect } from "react";
 import PropTypes from "prop-types";
 
-const Navbar = ({ navOpen }) => {
+const Navbar = ({ navOpen, setNavOpen }) => {
   const lastActiveLink = useRef();
   const activeBox = useRef();
 
@@ -31,6 +31,9 @@ const Navbar = ({ navOpen }) => {
     activeBox.current.style.left = event.target.offsetLeft + "px";
     activeBox.current.style.width = event.target.offsetWidth + "px";
     activeBox.current.style.height = event.target.offsetHeight + "px";
+    
+    // Close mobile menu when nav item is clicked
+    setNavOpen(false);
   };
 
   const navItems = [
@@ -46,13 +49,8 @@ const Navbar = ({ navOpen }) => {
       className: "nav-link",
     },
     {
-      label: "Education",
-      link: "#education",
-      className: "nav-link",
-    },
-    {
-      label: "Experience",
-      link: "#experience",
+      label: "Education & Experience",
+      link: "#education-experience",
       className: "nav-link",
     },
     {
@@ -92,6 +90,7 @@ const Navbar = ({ navOpen }) => {
 
 Navbar.propTypes = {
   navOpen: PropTypes.bool.isRequired,
+  setNavOpen: PropTypes.func.isRequired,
 };
 
 export default Navbar;

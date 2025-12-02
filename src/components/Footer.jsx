@@ -11,12 +11,8 @@ const sitemap = [
     href: "#about",
   },
   {
-    label: "Education",
-    href: "#education",
-  },
-  {
-    label: "Experience",
-    href: "#experience",
+    label: "Education & Experience",
+    href: "#education-experience",
   },
   {
     label: "Skills",

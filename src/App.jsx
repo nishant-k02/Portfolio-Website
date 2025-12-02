@@ -3,8 +3,7 @@ import { ReactLenis } from "lenis/react";
 import Header from "./components/Header";
 import Hero from "./components/Hero";
 import About from "./components/About";
-import Education from "./components/Education";
-import Experience from "./components/Experience";
+import EducationExperience from "./components/EducationExperience";
 import Skills from "./components/Skills";
 import Work from "./components/Work";
 import Contact from "./components/Contact";
@@ -19,8 +18,7 @@ const App = () => {
         <main>
           <Hero />
           <About />
-          <Education />
-          <Experience />
+          <EducationExperience />
           <Skills />
           <Work />
           <Contact />
