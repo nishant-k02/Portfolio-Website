@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 const aboutItems = [
   {
     label: "Project done",
@@ -10,6 +12,7 @@ const aboutItems = [
 ];
 
 const About = () => {
+  const [isExpanded, setIsExpanded] = useState(false);
   return (
     <section id="about" className="section">
       <div className="container">
@@ -34,19 +37,38 @@ const About = () => {
 
             {/* About Content */}
             <div className="space-y-4 mb-6">
+              {/* First paragraph - always visible */}
               <p className="text-sm text-zinc-700 dark:text-zinc-300 leading-relaxed text-justify">
                 Hello! I&apos;m Nishant, a passionate and adaptive software developer who specializes in full-stack application design, AI-driven systems, 
                 and scalable cloud architectures. With hands-on experience across modern technologies such as React, Next.js, Node.js, Flask, and MongoDB, 
                 I focus on building solutions that merge technical precision with user-centric design. My work spans web, mobile, and intelligent automation 
-                systems—leveraging tools like LangChain, OpenAI, and Azure to create products that enhance usability, reliability, and decision intelligence.
+                systems leveraging tools like LangChain, OpenAI, and Azure to create products that enhance usability, reliability, and decision intelligence.
               </p>
               
-              <p className="text-sm text-zinc-700 dark:text-zinc-300 leading-relaxed text-justify">
-                Having contributed to high-impact projects like an AI-powered healthcare assistant and an e-commerce platform with real-time chatbot integration, 
-                I enjoy translating complex ideas into elegant, deployable solutions. My recent work strengthened my skills in backend architecture, REST API optimization, 
-                and cross-platform development. Currently pursuing my Master&apos;s in Computer Science at the Illinois Institute of Technology (GPA 3.83), I aim to continue 
-                advancing in software innovation—crafting intelligent, efficient, and secure systems that empower users and businesses alike.
-              </p>
+              {/* Second paragraph - hidden on mobile unless expanded */}
+              <div className={`md:block ${isExpanded ? 'block' : 'hidden'}`}>
+                <p className="text-sm text-zinc-700 dark:text-zinc-300 leading-relaxed text-justify">
+                  Having contributed to high-impact projects like an AI-powered healthcare assistant and an e-commerce platform with real-time chatbot integration, 
+                  I enjoy translating complex ideas into elegant, deployable solutions. My recent work strengthened my skills in backend architecture, REST API optimization, 
+                  and cross-platform development. Currently pursuing my Master&apos;s in Computer Science at the Illinois Institute of Technology (GPA 3.83), I aim to continue 
+                  advancing in software innovation crafting intelligent, efficient, and secure systems that empower users and businesses alike.
+                </p>
+              </div>
+
+              {/* View More/Less Button - only visible on mobile */}
+              <div className="md:hidden">
+                <button
+                  onClick={() => setIsExpanded(!isExpanded)}
+                  className="text-sm text-emerald-600 dark:text-emerald-400 font-medium hover:text-emerald-700 dark:hover:text-emerald-300 transition-colors flex items-center gap-1"
+                >
+                  <span>{isExpanded ? 'View less' : 'View more'}</span>
+                  <span className={`material-symbols-rounded text-sm transition-transform duration-200 ${
+                    isExpanded ? 'rotate-180' : ''
+                  }`}>
+                    keyboard_arrow_down
+                  </span>
+                </button>
+              </div>
             </div>
 
             {/* Stats and Logo */}

@@ -1,5 +1,3 @@
-import React from "react";
-
 const socialLinks = [
   {
     href: "https://www.github.com/nishant-k02",
@@ -82,7 +80,7 @@ const Contact = () => {
         <div className="mb-12 lg:mb-0 lg:flex lg:flex-col">
           <h2 className="headline-2 lg:max-w-[12ch]">Contact Me</h2>
           <p className="text-zinc-600 dark:text-zinc-400 mt-3 mb-8 max-w-[50ch] lg:max-w-[30ch]:">
-            Reach out to me through any of the following platforms. I'm always
+            Reach out to me through any of the following platforms. I&apos;m always
             open to new opportunities and collaborations.
           </p>
           <div className="flex items-center gap-2 mt-auto">
