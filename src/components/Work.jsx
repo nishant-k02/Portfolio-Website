@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import { useRef } from "react";
 import ProjectCard from "./ProjectCard";
 
 const works = [
@@ -19,6 +19,13 @@ const works = [
     title: "Car Damage Detection",
     tags: ["Django", "Tensorflow"],
     projectLink: "https://github.com/nishant-k02/BE-Project.git",
+  },
+  {
+    imgSrc: "/images/project11.png",
+    title: "GitPulse",
+    tags: ["Neon Postgres", "LangGraph", "Streamlit", "OpenAI" ],
+    projectLink:
+      "https://gitagenticanalysis.streamlit.app/",
   },
   {
     imgSrc: "/images/project7.jpg",
@@ -44,13 +51,6 @@ const works = [
     title: "Covid Stats. Analyzer",
     tags: ["Python", "API", "PowerBI"],
     projectLink: "https://github.com/nishant-k02/Covid-Dashboard-Project.git",
-  },
-    {
-    imgSrc: "/images/project3.jpeg",
-    title: "Smart Homes Web App",
-    tags: ["JSP", "MongoDB", "MySQL"],
-    projectLink:
-      "https://github.com/nishant-k02/Enterprise-Web-Applications.git",
   },
   {
     imgSrc: "/images/project5.jpg",

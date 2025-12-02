@@ -1,4 +1,3 @@
-import React from "react";
 import EducationCard from "./EducationCard";
 
 const educationData = [
@@ -14,6 +13,7 @@ const educationData = [
       "Software Systems Architecture",
       "Mobile Application Development",
       "Software Modelling Development using UML ",
+      "Data Preparation and Analysis"
     ]
   },
   {

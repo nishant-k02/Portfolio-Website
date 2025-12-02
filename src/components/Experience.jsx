@@ -1,7 +1,27 @@
-import React from "react";
 import ExperienceCard from "./ExperienceCard";
 
 const experienceData = [
+  {
+    position: "Software Engineer Intern",
+    company: "ONEBIT INC.",
+    location: "Chicago, IL",
+    duration: "Sept 2025 – Present",
+    responsibilities: [
+      "Improved transaction categorization and reporting accuracy by developing intelligent filters, real-time category search, using React, Node.js, and Prisma, while integrating an AI-powered categorization that uses contextual cues and embeddings for automated labeling.",
+      "Developed an AI-driven recommendation module that generates personalized financial summaries, insights, and actionable suggestions to enhance user and business financial decision-making.",
+      "Enhanced reliability through automated Cypress tests, transaction deduplication via SHA-256 hashing, and cross-account transfer matching, strengthening data integrity and user experience across the platform."
+    ],
+    techStack: [
+      "Node.js",
+      "Express.js",
+      "JWT",
+      "Prisma",
+      "React",
+      "Cypress",
+      "SHA-256",
+      "PostgreSQL"
+    ]
+  },
   {
     position: "Software Developer Intern - Full Stack Developer",
     company: "Find Me LLC",
