@@ -81,7 +81,7 @@ body {
      bg-zinc-900/10 dark:bg-zinc-50/10 rounded-2xl ring-inset ring-1 ring-zinc-900/10 dark:ring-zinc-50/5
     scale-90 isolate blur-sm opacity-0 invisible 
     transition-[opacity,transform,filter] md:static md:flex md:items-center md:mt-0 
-    md:opacity-100 md:blur-0 md:visible md:scale-100 backdrop-blur-2xl;
+    md:opacity-100 md:blur-0 md:visible md:scale-100 backdrop-blur-2xl
 }
 
 .navbar.active {
@@ -89,9 +89,10 @@ body {
 }
 
 .nav-link {
-  @apply grid items-center h-9 px-4 text-sm font-medium 
+  @apply grid items-center h-12 px-4 text-sm font-medium 
     tracking-wide text-zinc-900/50 dark:text-zinc-50/50 hover:text-zinc-900 dark:hover:text-zinc-50
-    transition-colors;
+    transition-colors mb-2 last:mb-0 rounded-lg
+    md:h-9 md:mb-0 md:rounded-none;
 }
 
 .nav-link.active {
@@ -100,7 +101,7 @@ body {
 
 .navbar .active-box {
   @apply absolute bg-zinc-900 dark:bg-zinc-50
-    rounded-lg -z-10 transition-[top,left] duration-500;
+    rounded-lg -z-10 transition-[top,left,width,height] duration-500;
 }
 
 /* Button */
