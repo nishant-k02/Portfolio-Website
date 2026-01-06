@@ -23,9 +23,14 @@ const works = [
   {
     imgSrc: "/images/project11.png",
     title: "GitPulse",
-    tags: ["Neon Postgres", "LangGraph", "Streamlit", "OpenAI" ],
-    projectLink:
-      "https://gitagenticanalysis.streamlit.app/",
+    tags: ["Neon Postgres", "LangGraph", "Streamlit", "OpenAI"],
+    projectLink: "https://gitagenticanalysis.streamlit.app/",
+  },
+  {
+    imgSrc: "/images/project12.png",
+    title: "ResumeLens",
+    tags: ["NextJS", "Claude Anthropic", "CI/CD", "AWS Amplify"],
+    projectLink: "https://resumelenslite.vercel.app",
   },
   {
     imgSrc: "/images/project7.jpg",
@@ -135,7 +140,9 @@ const Work = () => {
             border border-zinc-500/20
           "
         >
-          <span className="material-symbols-rounded text-xl">chevron_right</span>
+          <span className="material-symbols-rounded text-xl">
+            chevron_right
+          </span>
         </button>
 
         {/* Enhanced Frame with gradient border */}
@@ -144,7 +151,10 @@ const Work = () => {
           <div
             ref={scrollContainerRef}
             className="overflow-x-auto scrollbar-hide"
-            style={{ scrollPaddingLeft: "1.5rem", scrollPaddingRight: "1.5rem" }}
+            style={{
+              scrollPaddingLeft: "1.5rem",
+              scrollPaddingRight: "1.5rem",
+            }}
           >
             <div
               className="
@@ -185,7 +195,8 @@ const Work = () => {
         {/* Project Counter */}
         <div className="text-center mt-8">
           <p className="text-zinc-500 text-sm">
-            <span className="text-sky-400 font-semibold">{works.length}</span> projects and counting...
+            <span className="text-sky-400 font-semibold">{works.length}</span>{" "}
+            projects and counting...
           </p>
         </div>
       </div>
