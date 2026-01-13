@@ -4,6 +4,26 @@ const experienceData = [
   // Work Experience
   {
     id: 1,
+    position: "Agentic Software Engineer Co-op",
+    company: "Nokia",
+    location: "Chicago, IL",
+    duration: "Jan 2026 – Present",
+    type: "experience",
+    responsibilities: [
+      "Designed and implemented agentic AI solutions leveraging Large Language Models (LLMs) to enhance software testing automation, and decision-making workflows for mission-critical Space & Defense systems.",
+      "Collaborated with cross-functional engineering teams to integrate AI-driven validation and reliability frameworks, improving test efficiency, system robustness, and scalability in high-assurance environments.",
+    ],
+    techStack: [
+      "Python",
+      "Artificial Intelligence",
+      "Large Language Models",
+      "Automation",
+      "Test Automation",
+      "Embeddings",
+    ],
+  },
+  {
+    id: 2,
     position: "Software Engineer Intern",
     company: "ONEBIT INC.",
     location: "Chicago, IL",
@@ -26,7 +46,7 @@ const experienceData = [
     ],
   },
   {
-    id: 2,
+    id: 3,
     position: "Full Stack Developer Intern",
     company: "Find Me LLC",
     location: "Charlotte, NC (Remote)",
@@ -54,7 +74,7 @@ const experienceData = [
     ],
   },
   {
-    id: 3,
+    id: 4,
     position: "Android Developer Intern",
     company: "Visanka Technologies",
     location: "Remote",
@@ -77,7 +97,7 @@ const experienceData = [
   },
   // Education
   {
-    id: 4,
+    id: 5,
     position: "Master of Computer Science",
     company: "Illinois Institute of Technology",
     location: "Chicago, IL",
@@ -94,7 +114,7 @@ const experienceData = [
     ],
   },
   {
-    id: 5,
+    id: 6,
     position: "Bachelor of Engineering in Computer Engineering",
     company: "Savitribai Phule Pune University",
     location: "Pune, India",
@@ -281,7 +301,9 @@ const EducationExperience = () => {
                       <div className="flex items-center gap-3 mb-4">
                         <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-sky-400 to-emerald-500 flex items-center justify-center shadow-lg">
                           <span className="material-symbols-rounded text-white text-2xl">
-                            {selectedItem.type === "experience" ? "work" : "school"}
+                            {selectedItem.type === "experience"
+                              ? "work"
+                              : "school"}
                           </span>
                         </div>
                         <div>
@@ -296,17 +318,25 @@ const EducationExperience = () => {
 
                       <div className="flex items-center gap-6 text-sm text-zinc-600 dark:text-zinc-400">
                         <span className="flex items-center gap-2">
-                          <span className="material-symbols-rounded text-lg">location_on</span>
+                          <span className="material-symbols-rounded text-lg">
+                            location_on
+                          </span>
                           {selectedItem.location}
                         </span>
                         <span className="flex items-center gap-2">
-                          <span className="material-symbols-rounded text-lg">schedule</span>
+                          <span className="material-symbols-rounded text-lg">
+                            schedule
+                          </span>
                           {selectedItem.duration}
                         </span>
                         {selectedItem.type === "education" && (
                           <span className="flex items-center gap-2">
-                            <span className="material-symbols-rounded text-lg text-amber-500">grade</span>
-                            <span className="font-medium">GPA: {selectedItem.gpa}</span>
+                            <span className="material-symbols-rounded text-lg text-amber-500">
+                              grade
+                            </span>
+                            <span className="font-medium">
+                              GPA: {selectedItem.gpa}
+                            </span>
                           </span>
                         )}
                       </div>
@@ -317,24 +347,33 @@ const EducationExperience = () => {
                       {selectedItem.type === "experience" ? (
                         <div>
                           <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-50 mb-4 flex items-center gap-2">
-                            <span className="material-symbols-rounded text-emerald-500">star</span>
+                            <span className="material-symbols-rounded text-emerald-500">
+                              star
+                            </span>
                             Key Achievements
                           </h3>
                           <div className="space-y-4">
-                            {selectedItem.responsibilities.map((responsibility, idx) => (
-                              <div key={idx} className="flex items-start gap-3">
-                                <div className="w-2 h-2 rounded-full bg-gradient-to-r from-emerald-400 to-sky-400 mt-2 flex-shrink-0"></div>
-                                <p className="text-zinc-700 dark:text-zinc-300 leading-relaxed">
-                                  {responsibility}
-                                </p>
-                              </div>
-                            ))}
+                            {selectedItem.responsibilities.map(
+                              (responsibility, idx) => (
+                                <div
+                                  key={idx}
+                                  className="flex items-start gap-3"
+                                >
+                                  <div className="w-2 h-2 rounded-full bg-gradient-to-r from-emerald-400 to-sky-400 mt-2 flex-shrink-0"></div>
+                                  <p className="text-zinc-700 dark:text-zinc-300 leading-relaxed">
+                                    {responsibility}
+                                  </p>
+                                </div>
+                              )
+                            )}
                           </div>
 
                           {/* Tech Stack */}
                           <div className="mt-6">
                             <h4 className="text-lg font-semibold text-zinc-900 dark:text-zinc-50 mb-3 flex items-center gap-2">
-                              <span className="material-symbols-rounded text-sky-500">code</span>
+                              <span className="material-symbols-rounded text-sky-500">
+                                code
+                              </span>
                               Technologies Used
                             </h4>
                             <div className="flex flex-wrap gap-2">
@@ -352,7 +391,9 @@ const EducationExperience = () => {
                       ) : (
                         <div>
                           <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-50 mb-4 flex items-center gap-2">
-                            <span className="material-symbols-rounded text-sky-500">menu_book</span>
+                            <span className="material-symbols-rounded text-sky-500">
+                              menu_book
+                            </span>
                             Relevant Coursework
                           </h3>
                           <div className="flex flex-wrap gap-2">
