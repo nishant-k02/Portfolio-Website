@@ -8,7 +8,7 @@ const Hero = () => {
           <h1 className="text-2xl font-semibold text-zinc-900 dark:text-zinc-50 mb-3">
             Nishant Khandhar
           </h1>
-          
+
           <div className="flex items-center gap-3">
             <div className=" flex items-center gap-1.5 text-zinc-400 text-sm tracking-wide">
               <span className="relative w-2 h-2 rounded-full bg-emerald-400">
@@ -19,7 +19,7 @@ const Hero = () => {
           </div>
 
           <h2 className="headline-1 max-w-[15ch] sm:max-w-[20ch] lg:max-w-[15ch] mt-5 mb-8 lg:mb-10">
-            Building Scalabale Mordern Websites for the future
+            Building Scalabale Modern Websites for the future
           </h2>
 
           <div className="flex items-center gap-3">

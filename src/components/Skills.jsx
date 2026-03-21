@@ -10,7 +10,7 @@ const skillCategories = [
       { imgSrc: "/images/django.svg", label: "Django" },
       { imgSrc: "/images/expressjs.svg", label: "ExpressJS" },
       { imgSrc: "/images/php.svg", label: "PHP" },
-    ]
+    ],
   },
   {
     title: "Frontend",
@@ -24,7 +24,7 @@ const skillCategories = [
       { imgSrc: "/images/nextjs.svg", label: "Next.js" },
       { imgSrc: "/images/tailwindcss.svg", label: "TailwindCSS" },
       { imgSrc: "/images/bootstrap.svg", label: "Bootstrap" },
-    ]
+    ],
   },
   {
     title: "Databases",
@@ -33,8 +33,10 @@ const skillCategories = [
       { imgSrc: "/images/mysql.svg", label: "MySQL" },
       { imgSrc: "/images/mongodb.svg", label: "MongoDB" },
       { imgSrc: "/images/sqlite.svg", label: "SQLite" },
+      { imgSrc: "/images/Chroma.svg", label: "Chroma DB" },
+      { imgSrc: "/images/postgres.jpeg", label: "Postgres" },
       { imgSrc: "/images/firebase.svg", label: "Firebase" },
-    ]
+    ],
   },
   {
     title: "Cloud & DevOps",
@@ -43,7 +45,8 @@ const skillCategories = [
       { imgSrc: "/images/git.svg", label: "Git" },
       { imgSrc: "/images/vercel.svg", label: "Vercel" },
       { imgSrc: "/images/postman.svg", label: "Postman" },
-    ]
+      { imgSrc: "/images/aws.jpeg", label: "AWS" },
+    ],
   },
   {
     title: "AI & Machine Learning",
@@ -51,7 +54,8 @@ const skillCategories = [
     skills: [
       { imgSrc: "/images/openai.svg", label: "OpenAI" },
       { imgSrc: "/images/langgraph.png", label: "LangGraph" },
-    ]
+      { imgSrc: "/images/RAG.jpg", label: "RAG" },
+    ],
   },
   {
     title: "Mobile & Other",
@@ -63,8 +67,8 @@ const skillCategories = [
       { imgSrc: "/images/cplusplus.svg", label: "C++" },
       { imgSrc: "/images/figma.svg", label: "Figma" },
       { imgSrc: "/images/latex.svg", label: "LaTeX" },
-    ]
-  }
+    ],
+  },
 ];
 
 const Skills = () => {
@@ -73,24 +77,21 @@ const Skills = () => {
       <div className="container max-w-7xl mx-auto relative z-10">
         {/* Section Header */}
         <div className="text-left mb-10">
-            <h2 className="headline-2 mb-8 bg-gradient-to-r from-sky-400 via-sky-500 to-sky-600 bg-clip-text text-transparent">
-              Skills and Technologies
-            </h2>
+          <h2 className="headline-2 mb-8 bg-gradient-to-r from-sky-400 via-sky-500 to-sky-600 bg-clip-text text-transparent">
+            Skills and Technologies
+          </h2>
         </div>
 
         {/* Skills Grid - Modern Cards */}
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
           {skillCategories.map((category, categoryIndex) => (
-            <div
-              key={categoryIndex}
-              className="group relative"
-            >
+            <div key={categoryIndex} className="group relative">
               {/* Card Background with Glassmorphism */}
               <div className="absolute inset-0 bg-gradient-to-br from-white/60 to-white/30 dark:from-zinc-800/60 dark:to-zinc-900/30 backdrop-blur-xl rounded-3xl border border-white/20 dark:border-zinc-700/50 shadow-xl shadow-black/5 dark:shadow-black/20"></div>
-              
+
               {/* Hover Glow Effect */}
               <div className="absolute inset-0 bg-gradient-to-br from-sky-400/0 via-sky-300/0 to-sky-500/0 group-hover:from-sky-400/8 group-hover:via-sky-300/8 group-hover:to-sky-500/8 rounded-3xl transition-all duration-500"></div>
-              
+
               {/* Card Content */}
               <div className="relative p-8 min-h-[380px] flex flex-col">
                 {/* Category Header */}

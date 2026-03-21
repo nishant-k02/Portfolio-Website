@@ -10,8 +10,8 @@ const experienceData = [
     duration: "Jan 2026 – Present",
     type: "experience",
     responsibilities: [
-      "Designed and implemented agentic AI solutions leveraging Large Language Models (LLMs) to enhance software testing automation, and decision-making workflows for mission-critical Space & Defense systems.",
-      "Collaborated with cross-functional engineering teams to integrate AI-driven validation and reliability frameworks, improving test efficiency, system robustness, and scalability in high-assurance environments.",
+      "Engineered a secure internal RAG pipeline using ChromaDB, automated ETL processing of feature PDFs with advanced chunking, embeddings (bge-m3 embeddings), and reranking (bge-reranker-large) to deliver automated test plans, reducing manual efforts by 83%.",
+      "Built AI-powered code review automation tools via Nokia LLM Gateway, optimizing context-window usage and providing logical differences and bugs. Created a Python-based Wireshark log analysis tool while supporting TCP/UDP inspection and secure SSH configurations.",
     ],
     techStack: [
       "Python",
@@ -30,9 +30,9 @@ const experienceData = [
     duration: "Sept 2025 – Dec 2025",
     type: "experience",
     responsibilities: [
-      "Improved transaction categorization and reporting accuracy by developing intelligent filters, real-time category search, using React, Node.js, and Prisma, while integrating an AI-powered categorization that uses contextual cues and embeddings for automated labeling.",
-      "Developed an AI-driven recommendation module that generates personalized financial summaries, insights, and actionable suggestions to enhance user and business financial decision-making.",
-      "Enhanced reliability through automated Cypress tests, transaction deduplication via SHA-256 hashing, and cross-account transfer matching, strengthening data integrity and user experience across the platform.",
+      "Optimized transaction categorization and reporting accuracy by architecting intelligent filters and real-time category search using Node.js and Prisma while integrating an AI-powered categorization for automated labeling.",
+      "Fixed major inconsistencies in uncategorized expense calculations and optimized front-end data handling for seamless alignment with backend financial logic.",
+      "Strengthened platform reliability through automated Cypress tests, transaction deduplication via SHA-256 hashing, and cross-account transfer matching, improving data integrity and user experience across the platform.",
     ],
     techStack: [
       "Node.js",
@@ -81,8 +81,8 @@ const experienceData = [
     duration: "Feb 2023 – Mar 2023",
     type: "experience",
     responsibilities: [
-      "Built an Android-based (JAVA) Job Portal App simplifying job searches for seekers, while assisting employers in managing applications and optimizing the hiring process",
-      "Added features like Applications Management and User Authentication, resulting in a 40% improvement in user engagement",
+      "Engineered an Android (Java) job portal application that streamlined job discovery for candidates while enabling employers to efficiently manage applications and hiring workflows.",
+      "Introduced core features like Applications, Management, and User Authentication, resulting in a 40% improvement in user engagement.",
       "Developed comprehensive mobile application with seamless user experience and robust backend integration",
     ],
     techStack: [
@@ -107,6 +107,7 @@ const experienceData = [
     coursework: [
       "Enterprise Web Applications",
       "Machine Learning",
+      "Big Data Technologies",
       "Software Systems Architecture",
       "Mobile Application Development",
       "Software Modelling Development using UML",
@@ -123,11 +124,13 @@ const experienceData = [
     gpa: "8.93/10.0",
     coursework: [
       "Object-Oriented Programming",
-      "Web Technology",
-      "Database Management Systems",
+      "Data Structures and Algorithms",
       "Computer Networks",
-      "Operating Systems",
+      "Web Technology",
       "Software Engineering",
+      "Database Management Systems",
+      "Operating Systems",
+      "Deep learning",
     ],
   },
 ];
@@ -274,8 +277,8 @@ const EducationExperience = () => {
                           selectedItem?.id === item.id
                             ? "bg-sky-100 text-sky-700 dark:bg-sky-900/30 dark:text-sky-300"
                             : item.type === "experience"
-                            ? "bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300"
-                            : "bg-sky-100 text-sky-700 dark:bg-sky-900/30 dark:text-sky-300"
+                              ? "bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300"
+                              : "bg-sky-100 text-sky-700 dark:bg-sky-900/30 dark:text-sky-300"
                         }`}
                       >
                         {item.type === "experience"
@@ -364,7 +367,7 @@ const EducationExperience = () => {
                                     {responsibility}
                                   </p>
                                 </div>
-                              )
+                              ),
                             )}
                           </div>
 
