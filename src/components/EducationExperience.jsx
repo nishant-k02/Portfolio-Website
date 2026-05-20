@@ -7,7 +7,7 @@ const experienceData = [
     position: "Agentic Software Engineer Co-op",
     company: "Nokia",
     location: "Chicago, IL",
-    duration: "Jan 2026 – Present",
+    duration: "Jan 2026 – May 2026",
     type: "experience",
     responsibilities: [
       "Engineered a secure internal RAG pipeline using ChromaDB, automated ETL processing of feature PDFs with advanced chunking, embeddings (bge-m3 embeddings), and reranking (bge-reranker-large) to deliver automated test plans, reducing manual efforts by 83%.",
@@ -101,7 +101,7 @@ const experienceData = [
     position: "Master of Computer Science",
     company: "Illinois Institute of Technology",
     location: "Chicago, IL",
-    duration: "2024 - 2026 (Expected)",
+    duration: "Aug 2024 - May 2026",
     type: "education",
     gpa: "3.8/4.0",
     coursework: [
@@ -119,7 +119,7 @@ const experienceData = [
     position: "Bachelor of Engineering in Computer Engineering",
     company: "Savitribai Phule Pune University",
     location: "Pune, India",
-    duration: "2020 - 2024",
+    duration: "Jan 2020 - Jun 2024",
     type: "education",
     gpa: "8.93/10.0",
     coursework: [

@@ -3,16 +3,22 @@ import ProjectCard from "./ProjectCard";
 
 const works = [
   {
-    imgSrc: "/images/project1.jpg",
-    title: "Healthcare AI Assistant",
-    tags: ["Flutter", "Python", "Autogen"],
-    projectLink: "https://github.com/nishant-k02/HealthCareAIAssistant.git",
+    imgSrc: "/images/project12.png",
+    title: "ResumeLens",
+    tags: ["NextJS", "Claude Anthropic", "CI/CD", "AWS Amplify"],
+    projectLink: "https://resumelenslite.vercel.app",
   },
   {
     imgSrc: "/images/project10.jpg",
     title: "ShopHub – AI-Powered E-commerce Platform",
     tags: ["NextJS", "LangChain", "OpenAI"],
     projectLink: "https://shop-hub-ecommerce.vercel.app",
+  },
+  {
+    imgSrc: "/images/project1.jpg",
+    title: "Healthcare AI Assistant",
+    tags: ["Flutter", "Python", "Autogen"],
+    projectLink: "https://github.com/nishant-k02/HealthCareAIAssistant.git",
   },
   {
     imgSrc: "/images/project2.jpg",
@@ -25,12 +31,6 @@ const works = [
     title: "GitPulse",
     tags: ["Neon Postgres", "LangGraph", "Streamlit", "OpenAI"],
     projectLink: "https://gitagenticanalysis.streamlit.app/",
-  },
-  {
-    imgSrc: "/images/project12.png",
-    title: "ResumeLens",
-    tags: ["NextJS", "Claude Anthropic", "CI/CD", "AWS Amplify"],
-    projectLink: "https://resumelenslite.vercel.app",
   },
   {
     imgSrc: "/images/project7.jpg",
