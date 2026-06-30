@@ -4,6 +4,30 @@ const experienceData = [
   // Work Experience
   {
     id: 1,
+    position: "Associate AI Software Engineer",
+    company: "Reliance IQ",
+    location: "Chicago, IL",
+    duration: "Jun 2026 – Present",
+    type: "experience",
+    responsibilities: [
+      "Maintained a full-stack application for OEM customers, delivering scalable and reliable solutions across frontend and backend systems.",
+      " Implemented asynchronous backend APIs using Flask, integrating with Google Cloud Platform (GCP) services including Pub/Sub, Cloud Functions, and Firestore for event-driven data processing and storage.",
+      " Developed responsive and user-friendly web interfaces using React and TypeScript, ensuring a seamless experience across desktop and mobile devices.",
+      " Implemented global state management using Redux, improving application maintainability, performance, and data consistency.",
+    ],
+    techStack: [
+      "Flask",
+      "Python",
+      "Artificial Intelligence",
+      "Google Cloud Platform (Pub/Sub, Cloud Functions, Firestore)",
+      "React",
+      "TypeScript",
+      "Redux",
+      "REST APIs.",
+    ],
+  },
+  {
+    id: 2,
     position: "Agentic Software Engineer Co-op",
     company: "Nokia",
     location: "Chicago, IL",
@@ -23,7 +47,7 @@ const experienceData = [
     ],
   },
   {
-    id: 2,
+    id: 3,
     position: "Software Engineer Intern",
     company: "ONEBIT INC.",
     location: "Chicago, IL",
@@ -46,7 +70,7 @@ const experienceData = [
     ],
   },
   {
-    id: 3,
+    id: 4,
     position: "Full Stack Developer Intern",
     company: "Find Me LLC",
     location: "Charlotte, NC (Remote)",
@@ -74,7 +98,7 @@ const experienceData = [
     ],
   },
   {
-    id: 4,
+    id: 5,
     position: "Android Developer Intern",
     company: "Visanka Technologies",
     location: "Remote",
@@ -97,7 +121,7 @@ const experienceData = [
   },
   // Education
   {
-    id: 5,
+    id: 6,
     position: "Master of Computer Science",
     company: "Illinois Institute of Technology",
     location: "Chicago, IL",
@@ -115,7 +139,7 @@ const experienceData = [
     ],
   },
   {
-    id: 6,
+    id: 7,
     position: "Bachelor of Engineering in Computer Engineering",
     company: "Savitribai Phule Pune University",
     location: "Pune, India",
