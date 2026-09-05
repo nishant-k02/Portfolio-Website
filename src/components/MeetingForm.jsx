@@ -61,24 +61,6 @@ const isWeekend = (isoDate) => {
   return day === 0 || day === 6;
 };
 
-/**
- * Google appointment-schedule pages only render inside an iframe when
- * `gv=true` is present; Cal.com and Calendly embed as-is.
- */
-const toEmbedUrl = (url) => {
-  try {
-    const u = new URL(url);
-    if (u.hostname.endsWith("calendar.google.com")) {
-      // "/u/0/" is the signed-in owner's view and refuses to be framed.
-      u.pathname = u.pathname.replace(/\/u\/\d+\//, "/");
-      u.searchParams.set("gv", "true");
-    }
-    return u.toString();
-  } catch {
-    return url;
-  }
-};
-
 /** A fresh, unguessable Jitsi room when no permanent link is configured. */
 const makeVideoLink = (guestName) => {
   if (VIDEO_LINK) return VIDEO_LINK;
@@ -119,7 +101,6 @@ const MeetingForm = () => {
   const [status, setStatus] = useState("idle"); // idle | sending | done | error
   const [booked, setBooked] = useState(null);
   const [copied, setCopied] = useState(false);
-  const [embedFailed, setEmbedFailed] = useState(false);
 
   const update = (k) => (e) => setForm((f) => ({ ...f, [k]: e.target.value }));
 
@@ -165,8 +146,20 @@ const MeetingForm = () => {
 
     const videoLink = makeVideoLink(form.name);
     const { start, end, title, details } = buildEvent(videoLink);
-    const gcal = googleCalendarUrl({ title, details, start, end, location: videoLink });
-    const outlook = outlookCalendarUrl({ title, details, start, end, location: videoLink });
+    const gcal = googleCalendarUrl({
+      title,
+      details,
+      start,
+      end,
+      location: videoLink,
+    });
+    const outlook = outlookCalendarUrl({
+      title,
+      details,
+      start,
+      end,
+      location: videoLink,
+    });
     const ics = buildICS({
       title,
       details,
@@ -235,40 +228,88 @@ const MeetingForm = () => {
 
   /* ── external scheduler ────────────────────────────────────────────── */
   if (BOOKING_URL) {
+    const sample = zonedToUtc(nextWeekday(), WORK_START, HOST_TIMEZONE);
+    const sampleEnd = zonedToUtc(nextWeekday(), WORK_END, HOST_TIMEZONE);
+    const fmt = (d, tz) =>
+      formatInZone(d, tz, { hour: "numeric", minute: "2-digit" });
+
+    const facts = [
+      {
+        icon: "schedule",
+        label: "Length",
+        value: `${MEETING_MINUTES} minutes`,
+      },
+      {
+        icon: "calendar_month",
+        label: "When",
+        value: `Weekdays · ${fmt(sample, HOST_TIMEZONE)} – ${fmt(sampleEnd, HOST_TIMEZONE)} ${shortZoneName(
+          sample,
+          HOST_TIMEZONE,
+        )}`,
+        sub: differentZone
+          ? `${fmt(sample, visitorZone)} – ${fmt(sampleEnd, visitorZone)} your time`
+          : null,
+      },
+      {
+        icon: "videocam",
+        label: "Where",
+        value: "Google Meet",
+        sub: "Link added to the invite automatically",
+      },
+    ];
+
     return (
-      <div>
-        <div className="mb-4 flex items-start gap-3 rounded-2xl border border-emerald-300/60 bg-emerald-50/70 p-4 dark:border-emerald-400/20 dark:bg-emerald-400/10">
-          <span className="material-symbols-rounded text-[22px] text-emerald-600 dark:text-emerald-300">
-            event_available
-          </span>
-          <div>
-            <p className="text-sm font-semibold">Pick a time that works</p>
-            <p className="text-xs text-ink-600 dark:text-ink-300">
-              Live availability from my calendar — booked instantly, with the
-              invite and video link included.
-            </p>
-          </div>
+      <div className="flex h-full flex-col">
+        <div>
+          <span className="chip-brand">Live availability</span>
+          <h3 className="mt-4 font-display text-2xl font-semibold tracking-tight">
+            Book a {MEETING_MINUTES}-minute call
+          </h3>
+          <p className="mt-2 text-sm leading-relaxed text-ink-600 dark:text-ink-300">
+            Pick any open slot on my calendar - it&apos;s booked on the spot and
+            we both get the invite straight away.
+          </p>
         </div>
 
-        <div className="overflow-hidden rounded-2xl border border-ink-200/70 bg-white dark:border-white/[0.06]">
-          <iframe
-            src={toEmbedUrl(BOOKING_URL)}
-            title="Book a meeting"
-            className="h-[640px] w-full"
-            loading="lazy"
-            onError={() => setEmbedFailed(true)}
-          />
-        </div>
+        <ul className="mt-6 space-y-3">
+          {facts.map(({ icon, label, value, sub }) => (
+            <li key={label} className="flex items-start gap-3">
+              <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl border border-ink-200/80 bg-white/70 text-brand-600 dark:border-white/10 dark:bg-white/[0.04] dark:text-brand-300">
+                <span className="material-symbols-rounded text-[20px]">
+                  {icon}
+                </span>
+              </span>
+              <div className="min-w-0">
+                <p className="text-xs font-medium uppercase tracking-wider text-ink-500 dark:text-ink-400">
+                  {label}
+                </p>
+                <p className="text-sm font-medium text-ink-900 dark:text-ink-50">
+                  {value}
+                </p>
+                {sub && (
+                  <p className="text-xs text-ink-500 dark:text-ink-400">
+                    {sub}
+                  </p>
+                )}
+              </div>
+            </li>
+          ))}
+        </ul>
 
-        <a
-          href={BOOKING_URL}
-          target="_blank"
-          rel="noopener noreferrer"
-          className={`btn mt-4 w-full !max-w-full ${embedFailed ? "btn-primary" : "btn-outline"}`}
-        >
-          {embedFailed ? "Open the booking page" : "Trouble booking? Open in a new tab"}
-          <span className="material-symbols-rounded">arrow_outward</span>
-        </a>
+        <div className="mt-auto pt-8">
+          <a
+            href={BOOKING_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn btn-primary w-full !max-w-full"
+          >
+            See available times
+            <span className="material-symbols-rounded">arrow_outward</span>
+          </a>
+          <p className="mt-3 text-center text-xs text-ink-500 dark:text-ink-400">
+            Opens my Google Calendar booking page - no account needed.
+          </p>
+        </div>
       </div>
     );
   }
@@ -309,7 +350,9 @@ const MeetingForm = () => {
 
         <div className="mt-5 rounded-2xl border border-ink-200/70 bg-white/70 p-4 text-left dark:border-white/[0.06] dark:bg-white/[0.03]">
           <div className="flex items-center gap-2">
-            <span className="material-symbols-rounded text-[18px] text-brand-500">videocam</span>
+            <span className="material-symbols-rounded text-[18px] text-brand-500">
+              videocam
+            </span>
             <p className="text-xs font-semibold uppercase tracking-[0.16em] text-ink-500 dark:text-ink-400">
               Video call link
             </p>
@@ -337,11 +380,14 @@ const MeetingForm = () => {
               aria-label="Copy meeting link"
               className="grid h-8 w-8 shrink-0 place-items-center rounded-lg border border-ink-200 text-ink-600 transition-colors hover:border-brand-300 hover:text-brand-600 dark:border-white/10 dark:text-ink-300 dark:hover:border-brand-400/50 dark:hover:text-brand-300"
             >
-              <span className="material-symbols-rounded text-[16px]">{copied ? "check" : "content_copy"}</span>
+              <span className="material-symbols-rounded text-[16px]">
+                {copied ? "check" : "content_copy"}
+              </span>
             </button>
           </div>
           <p className="mt-2 text-xs text-ink-500 dark:text-ink-400">
-            It&apos;s in the calendar entry too — no app or account needed to join.
+            It&apos;s in the calendar entry too — no app or account needed to
+            join.
           </p>
         </div>
 
@@ -400,8 +446,8 @@ const MeetingForm = () => {
             {HOST_TIMEZONE_LABEL} · {MEETING_MINUTES} min
           </p>
           <p className="mt-1 text-xs text-ink-500 dark:text-ink-400">
-            Times aren&apos;t checked against my calendar yet — I&apos;ll confirm
-            or offer the nearest free slot.
+            Times aren&apos;t checked against my calendar yet — I&apos;ll
+            confirm or offer the nearest free slot.
           </p>
         </div>
       </div>
@@ -551,7 +597,8 @@ const MeetingForm = () => {
         )}
       </button>
       <p className="mt-3 text-center text-xs text-ink-500 dark:text-ink-400">
-        You&apos;ll get a video call link and calendar invite right away — I confirm the slot by email.
+        You&apos;ll get a video call link and calendar invite right away — I
+        confirm the slot by email.
       </p>
     </form>
   );
