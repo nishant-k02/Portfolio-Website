@@ -1,4 +1,6 @@
 import { useState } from "react";
+import MeetingForm from "./MeetingForm";
+import { EMAIL } from "../data/meeting";
 
 const socialLinks = [
   {
@@ -75,164 +77,11 @@ const socialLinks = [
   },
 ];
 
-const EMAIL = "nishantkhandhar.us@gmail.com";
-
 const contactInfo = [
   { icon: "mail", label: "Email", value: EMAIL, href: `mailto:${EMAIL}` },
-  {
-    icon: "location_on",
-    label: "Based in",
-    value: "Chicago, IL · open to remote & relocation",
-  },
+  { icon: "location_on", label: "Based in", value: "Chicago, IL · open to remote & relocation" },
   { icon: "schedule", label: "Response time", value: "Usually within a day" },
 ];
-
-const timeSlots = [
-  "9:00 AM",
-  "10:00 AM",
-  "11:00 AM",
-  "1:00 PM",
-  "2:00 PM",
-  "3:00 PM",
-  "4:00 PM",
-];
-
-const todayISO = () => {
-  const d = new Date();
-  d.setDate(d.getDate() + 1);
-  return d.toISOString().slice(0, 10);
-};
-
-const MeetingForm = () => {
-  const [form, setForm] = useState({
-    name: "",
-    email: "",
-    purpose: "",
-    date: "",
-    time: "",
-  });
-  const update = (k) => (e) => setForm((f) => ({ ...f, [k]: e.target.value }));
-
-  const onSubmit = (e) => {
-    e.preventDefault();
-    const when = form.date
-      ? new Date(form.date + "T12:00:00").toLocaleDateString("en-US", {
-          weekday: "long",
-          month: "long",
-          day: "numeric",
-          year: "numeric",
-        })
-      : "a time that suits you";
-    const subject = encodeURIComponent(
-      `Meeting request: ${form.purpose || "Intro call"} — ${form.name}`,
-    );
-    const body = encodeURIComponent(
-      `Hi Nishant,\n\nI'd like to schedule a call.\n\nName: ${form.name}\nEmail: ${form.email}\nPurpose: ${form.purpose}\nPreferred time: ${when}${form.time ? ` at ${form.time} Central` : ""}\n\nThanks!`,
-    );
-    window.location.href = `mailto:${EMAIL}?subject=${subject}&body=${body}`;
-  };
-
-  return (
-    <form onSubmit={onSubmit}>
-      <div className="mb-5 flex items-start gap-3 rounded-2xl border border-emerald-300/60 bg-emerald-50/70 p-4 dark:border-emerald-400/20 dark:bg-emerald-400/10">
-        <span className="material-symbols-rounded text-[22px] text-emerald-600 dark:text-emerald-300">
-          event_available
-        </span>
-        <div>
-          <p className="text-sm font-semibold">Recruiter &amp; intro calls</p>
-          <p className="text-xs text-ink-600 dark:text-ink-300">
-            Weekdays · 9:00 AM – 5:00 PM Central · 20–30 min
-          </p>
-        </div>
-      </div>
-
-      <div className="grid gap-4 md:grid-cols-2">
-        <div>
-          <label htmlFor="m-name" className="label">
-            Name
-          </label>
-          <input
-            id="m-name"
-            required
-            value={form.name}
-            onChange={update("name")}
-            placeholder="Your name"
-            autoComplete="name"
-            className="text-field"
-          />
-        </div>
-        <div>
-          <label htmlFor="m-email" className="label">
-            Work email
-          </label>
-          <input
-            id="m-email"
-            type="email"
-            required
-            value={form.email}
-            onChange={update("email")}
-            placeholder="you@company.com"
-            autoComplete="email"
-            className="text-field"
-          />
-        </div>
-      </div>
-      <div className="mt-4">
-        <label htmlFor="m-purpose" className="label">
-          Meeting purpose
-        </label>
-        <input
-          id="m-purpose"
-          required
-          value={form.purpose}
-          onChange={update("purpose")}
-          placeholder="Role, team, or topic"
-          className="text-field"
-        />
-      </div>
-      <div className="mt-4 grid gap-4 md:grid-cols-2">
-        <div>
-          <label htmlFor="m-date" className="label">
-            Preferred date
-          </label>
-          <input
-            id="m-date"
-            type="date"
-            min={todayISO()}
-            value={form.date}
-            onChange={update("date")}
-            className="text-field"
-          />
-        </div>
-        <div>
-          <label htmlFor="m-time" className="label">
-            Preferred time (Central)
-          </label>
-          <select
-            id="m-time"
-            value={form.time}
-            onChange={update("time")}
-            className="text-field"
-          >
-            <option value="">Any time</option>
-            {timeSlots.map((t) => (
-              <option key={t} value={t}>
-                {t}
-              </option>
-            ))}
-          </select>
-        </div>
-      </div>
-      <p className="mt-3 text-xs text-ink-500 dark:text-ink-400">
-        This opens a pre-filled email - the time is confirmed once I reply.
-      </p>
-      <button type="submit" className="btn btn-primary mt-5 w-full !max-w-full">
-        Request this time
-        <span className="material-symbols-rounded">arrow_forward</span>
-      </button>
-    </form>
-  );
-};
 
 const MessageForm = () => (
   <form action="https://getform.io/f/allldxwa" method="POST">

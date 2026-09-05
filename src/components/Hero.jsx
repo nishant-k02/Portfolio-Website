@@ -5,15 +5,38 @@ const highlights = [
   { icon: "psychology", value: "AI + Full‑stack", label: "RAG · LLM · Cloud" },
 ];
 
-const stack = ["React", "Next.js", "TypeScript", "Node.js", "Python", "Flask", "GCP", "AWS", "Docker", "LLMs / RAG"];
+const stack = [
+  "React",
+  "Next.js",
+  "TypeScript",
+  "Node.js",
+  "Python",
+  "Flask",
+  "GCP",
+  "AWS",
+  "Docker",
+  "LLMs / RAG",
+];
 
 const Hero = () => {
   return (
-    <section id="home" className="relative overflow-hidden pt-28 pb-12 sm:pt-32 lg:pt-44 lg:pb-24">
+    <section
+      id="home"
+      className="relative overflow-hidden pt-28 pb-12 sm:pt-32 lg:pt-44 lg:pb-24"
+    >
       {/* ambient glow */}
-      <div className="absolute inset-x-0 top-0 -z-10 h-[560px] bg-hero-glow" aria-hidden="true" />
-      <div className="blob -left-24 top-24 h-72 w-72 bg-brand-500/40" aria-hidden="true" />
-      <div className="blob right-0 top-64 h-80 w-80 bg-violet-500/30" aria-hidden="true" />
+      <div
+        className="absolute inset-x-0 top-0 -z-10 h-[560px] bg-hero-glow"
+        aria-hidden="true"
+      />
+      <div
+        className="blob -left-24 top-24 h-72 w-72 bg-brand-500/40"
+        aria-hidden="true"
+      />
+      <div
+        className="blob right-0 top-64 h-80 w-80 bg-violet-500/30"
+        aria-hidden="true"
+      />
 
       <div className="container">
         <div className="grid items-center gap-12 lg:grid-cols-[1.15fr_0.85fr] lg:gap-16">
@@ -24,31 +47,45 @@ const Hero = () => {
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75"></span>
                 <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400"></span>
               </span>
-              Available for work · Chicago, IL
+              Available for work · Chicago, IL · Open to relocate
             </div>
 
-            <h1 className="headline-1 reveal mt-6" style={{ transitionDelay: "80ms" }}>
+            <h1
+              className="headline-1 reveal mt-6"
+              style={{ transitionDelay: "80ms" }}
+            >
               Hi, I&apos;m Nishant.
-              <br />
-              I build{" "}
-              <span className="text-gradient animate-shimmer">scalable products</span>
+              <br />I build{" "}
+              <span className="text-gradient animate-shimmer">
+                scalable products
+              </span>
               <br className="hidden sm:block" /> and AI‑driven systems.
             </h1>
 
-            <p className="lead reveal mt-6 max-w-[52ch]" style={{ transitionDelay: "160ms" }}>
+            <p
+              className="lead reveal mt-6 max-w-[52ch]"
+              style={{ transitionDelay: "160ms" }}
+            >
               Software Engineer focused on full‑stack development, cloud
               architecture and LLM‑powered automation. Currently shipping at
               Reliance IQ; previously Nokia and ONEBIT.
             </p>
 
-            <div className="reveal mt-8 flex flex-wrap items-center gap-3" style={{ transitionDelay: "240ms" }}>
+            <div
+              className="reveal mt-8 flex flex-wrap items-center gap-3"
+              style={{ transitionDelay: "240ms" }}
+            >
               <ButtonPrimary
                 href="/files/resume.pdf"
                 label="Download CV"
                 icon="download"
                 download
               />
-              <ButtonOutline href="#work" label="View Projects" icon="arrow_downward" />
+              <ButtonOutline
+                href="#work"
+                label="View Projects"
+                icon="arrow_downward"
+              />
             </div>
 
             <ul
@@ -69,13 +106,22 @@ const Hero = () => {
               style={{ transitionDelay: "380ms" }}
             >
               {highlights.map(({ icon, value, label }) => (
-                <div key={label} className="card flex items-center gap-3 px-4 py-3">
+                <div
+                  key={label}
+                  className="card flex items-center gap-3 px-4 py-3"
+                >
                   <span className="icon-tile !h-9 !w-9 !rounded-lg">
-                    <span className="material-symbols-rounded text-[18px]">{icon}</span>
+                    <span className="material-symbols-rounded text-[18px]">
+                      {icon}
+                    </span>
                   </span>
                   <div className="min-w-0">
-                    <p className="font-display text-base font-semibold leading-tight">{value}</p>
-                    <p className="text-xs text-ink-500 dark:text-ink-300">{label}</p>
+                    <p className="font-display text-base font-semibold leading-tight">
+                      {value}
+                    </p>
+                    <p className="text-xs text-ink-500 dark:text-ink-300">
+                      {label}
+                    </p>
                   </div>
                 </div>
               ))}
@@ -101,11 +147,17 @@ const Hero = () => {
             {/* floating stat cards */}
             <div className="card animate-float absolute -left-4 bottom-10 flex items-center gap-3 px-4 py-3 sm:-left-8">
               <span className="icon-tile !h-9 !w-9 !rounded-lg">
-                <span className="material-symbols-rounded text-[18px]">rocket_launch</span>
+                <span className="material-symbols-rounded text-[18px]">
+                  rocket_launch
+                </span>
               </span>
               <div>
-                <p className="font-display text-lg font-semibold leading-none">15+</p>
-                <p className="text-xs text-ink-500 dark:text-ink-300">Projects shipped</p>
+                <p className="font-display text-lg font-semibold leading-none">
+                  15+
+                </p>
+                <p className="text-xs text-ink-500 dark:text-ink-300">
+                  Projects shipped
+                </p>
               </div>
             </div>
             <div
@@ -113,11 +165,17 @@ const Hero = () => {
               style={{ animationDelay: "-3s" }}
             >
               <span className="icon-tile !h-9 !w-9 !rounded-lg">
-                <span className="material-symbols-rounded text-[18px]">psychology</span>
+                <span className="material-symbols-rounded text-[18px]">
+                  psychology
+                </span>
               </span>
               <div>
-                <p className="font-display text-lg font-semibold leading-none">AI + Full‑stack</p>
-                <p className="text-xs text-ink-500 dark:text-ink-300">RAG · LLM · Cloud</p>
+                <p className="font-display text-lg font-semibold leading-none">
+                  AI + Full‑stack
+                </p>
+                <p className="text-xs text-ink-500 dark:text-ink-300">
+                  RAG · LLM · Cloud
+                </p>
               </div>
             </div>
           </div>
