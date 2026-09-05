@@ -3,7 +3,7 @@ import { ButtonPrimary } from "./Button";
 const sitemap = [
   { label: "Home", href: "#home" },
   { label: "About", href: "#about" },
-  { label: "Experience", href: "#education-experience" },
+  { label: "Journey", href: "#education-experience" },
   { label: "Skills", href: "#skills" },
   { label: "Projects", href: "#work" },
   { label: "Contact", href: "#contact" },

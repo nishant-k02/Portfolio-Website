@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 const commands = [
   { group: "Navigate", label: "Home", hint: "Top of page", icon: "home", href: "#home" },
   { group: "Navigate", label: "About", hint: "Who I am", icon: "person", href: "#about" },
-  { group: "Navigate", label: "Experience & Education", hint: "Timeline", icon: "work", href: "#education-experience" },
+  { group: "Navigate", label: "Journey", hint: "Experience & education timeline", icon: "work", href: "#education-experience" },
   { group: "Navigate", label: "Skills", hint: "Toolbox", icon: "code", href: "#skills" },
   { group: "Navigate", label: "Projects", hint: "Case studies", icon: "folder_open", href: "#work" },
   { group: "Navigate", label: "Contact", hint: "Send a message or book time", icon: "mail", href: "#contact" },

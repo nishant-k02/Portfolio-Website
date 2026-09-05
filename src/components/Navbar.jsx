@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 const navItems = [
   { label: "Home", link: "#home" },
   { label: "About", link: "#about" },
-  { label: "Experience", link: "#education-experience" },
+  { label: "Journey", link: "#education-experience" },
   { label: "Skills", link: "#skills" },
   { label: "Projects", link: "#work" },
   { label: "Contact", link: "#contact", className: "md:hidden" },
