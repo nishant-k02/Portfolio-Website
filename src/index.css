@@ -183,7 +183,7 @@ body {
 /* ───────────────────────── Buttons ───────────────────────── */
 
 .btn {
-  @apply inline-flex h-11 max-w-max items-center justify-center gap-2 rounded-full px-5 text-sm font-semibold
+  @apply inline-flex h-11 max-w-max items-center justify-center gap-2 whitespace-nowrap rounded-full px-5 text-sm font-semibold
     transition-[background-color,box-shadow,transform,color] duration-200 active:scale-[0.98]
     focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-400 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent;
 }

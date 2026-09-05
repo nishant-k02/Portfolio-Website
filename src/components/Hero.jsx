@@ -1,10 +1,15 @@
 import { ButtonPrimary, ButtonOutline } from "./Button";
 
+const highlights = [
+  { icon: "rocket_launch", value: "15+", label: "Projects shipped" },
+  { icon: "psychology", value: "AI + Full‑stack", label: "RAG · LLM · Cloud" },
+];
+
 const stack = ["React", "Next.js", "TypeScript", "Node.js", "Python", "Flask", "GCP", "AWS", "Docker", "LLMs / RAG"];
 
 const Hero = () => {
   return (
-    <section id="home" className="relative overflow-hidden pt-32 pb-16 lg:pt-44 lg:pb-24">
+    <section id="home" className="relative overflow-hidden pt-28 pb-12 sm:pt-32 lg:pt-44 lg:pb-24">
       {/* ambient glow */}
       <div className="absolute inset-x-0 top-0 -z-10 h-[560px] bg-hero-glow" aria-hidden="true" />
       <div className="blob -left-24 top-24 h-72 w-72 bg-brand-500/40" aria-hidden="true" />
@@ -57,10 +62,31 @@ const Hero = () => {
                 </li>
               ))}
             </ul>
+
+            {/* Compact stats — shown where the portrait is hidden */}
+            <div
+              className="reveal mt-8 grid gap-3 min-[420px]:grid-cols-2 lg:hidden"
+              style={{ transitionDelay: "380ms" }}
+            >
+              {highlights.map(({ icon, value, label }) => (
+                <div key={label} className="card flex items-center gap-3 px-4 py-3">
+                  <span className="icon-tile !h-9 !w-9 !rounded-lg">
+                    <span className="material-symbols-rounded text-[18px]">{icon}</span>
+                  </span>
+                  <div className="min-w-0">
+                    <p className="font-display text-base font-semibold leading-tight">{value}</p>
+                    <p className="text-xs text-ink-500 dark:text-ink-300">{label}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
 
-          {/* Portrait */}
-          <div className="reveal relative mx-auto w-full max-w-[420px] lg:max-w-none" style={{ transitionDelay: "200ms" }}>
+          {/* Portrait — desktop only */}
+          <div
+            className="reveal relative mx-auto hidden w-full max-w-[420px] lg:block lg:max-w-none"
+            style={{ transitionDelay: "200ms" }}
+          >
             <div className="relative aspect-[4/5] overflow-hidden rounded-[2rem] border border-white/40 bg-gradient-to-b from-brand-100 to-violet-100/40 shadow-glow dark:border-white/10 dark:from-brand-500/20 dark:to-ink-900">
               <img
                 src="/images/profile2.png"
