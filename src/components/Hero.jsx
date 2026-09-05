@@ -1,4 +1,12 @@
 import { ButtonPrimary, ButtonOutline } from "./Button";
+import socialLinks from "../data/socials";
+
+const roles = [
+  "Software Engineer",
+  "Full-Stack Engineer",
+  "AI / ML Engineer",
+  "Backend Engineer",
+];
 
 const highlights = [
   { icon: "rocket_launch", value: "15+", label: "Projects shipped" },
@@ -77,9 +85,21 @@ const Hero = () => {
               previously Nokia and ONEBIT.
             </p>
 
+            <ul
+              className="reveal mt-7 flex flex-wrap gap-2"
+              style={{ transitionDelay: "220ms" }}
+              aria-label="Roles I'm open to"
+            >
+              {roles.map((role) => (
+                <li key={role} className="chip-brand">
+                  {role}
+                </li>
+              ))}
+            </ul>
+
             <div
-              className="reveal mt-8 flex flex-wrap items-center gap-3"
-              style={{ transitionDelay: "240ms" }}
+              className="reveal mt-7 flex flex-wrap items-center gap-3"
+              style={{ transitionDelay: "280ms" }}
             >
               <ButtonPrimary
                 href="/files/resume.pdf"
@@ -87,16 +107,51 @@ const Hero = () => {
                 icon="download"
                 download
               />
+
               <ButtonOutline
-                href="#work"
-                label="View Projects"
-                icon="arrow_downward"
+                href="#contact"
+                label="Schedule a meeting"
+                icon="calendar_month"
               />
+
+              <div className="flex items-center gap-2">
+                {socialLinks
+                  .filter(({ alt }) => alt === "LinkedIn" || alt === "GitHub")
+                  .map(({ href, icon, alt }) => (
+                    <a
+                      key={alt}
+                      href={href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={alt}
+                      className="grid h-11 w-11 place-items-center rounded-full border border-ink-200 bg-white/60 text-ink-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-brand-300 hover:text-brand-600 dark:border-white/10 dark:bg-white/[0.04] dark:text-ink-100 dark:hover:border-brand-400/50 dark:hover:text-brand-300"
+                    >
+                      {icon}
+                    </a>
+                  ))}
+              </div>
             </div>
 
-            <ul
-              className="reveal mt-10 flex flex-wrap gap-2"
+            <a
+              href="#work"
+              className="reveal mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-brand-600 transition-colors hover:text-brand-700 dark:text-brand-300 dark:hover:text-brand-200"
+              style={{ transitionDelay: "300ms" }}
+            >
+              View selected projects
+              <span className="material-symbols-rounded text-[18px]">
+                arrow_downward
+              </span>
+            </a>
+
+            <p
+              className="reveal mt-9 text-[11px] font-semibold uppercase tracking-[0.18em] text-ink-500 dark:text-ink-400"
               style={{ transitionDelay: "320ms" }}
+            >
+              Core stack
+            </p>
+            <ul
+              className="reveal mt-3 flex flex-wrap gap-2"
+              style={{ transitionDelay: "340ms" }}
               aria-label="Core stack"
             >
               {stack.map((s) => (
