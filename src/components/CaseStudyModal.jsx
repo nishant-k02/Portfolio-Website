@@ -191,7 +191,7 @@ const CaseStudyModal = ({ project, onClose, onNext, onPrev }) => {
                   <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-brand-600 dark:text-brand-300">
                     Key decisions
                   </p>
-                  <h3 className="title-1 mt-1">Why I built it this way</h3>
+                  <h3 className="title-1 mt-1">Design decisions</h3>
                   <ul className="mt-3 space-y-2">
                     {cs.decisions.map((d) => (
                       <li key={d} className="flex gap-2 text-sm text-ink-700 dark:text-ink-200">

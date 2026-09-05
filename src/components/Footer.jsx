@@ -28,17 +28,17 @@ const Footer = () => {
             <div>
               <span className="eyebrow">Open to opportunities</span>
               <h2 className="headline-1 mt-4 !text-4xl lg:!text-5xl">
-                Let&apos;s work <span className="text-gradient">together</span> today!
+                Let&apos;s work <span className="text-gradient">together</span>
               </h2>
               <p className="lead mt-4 max-w-[46ch]">
-                Have a role, a product idea or a problem worth solving? I&apos;d
-                love to hear about it.
+                Whether it&apos;s a role, a product idea or a technical problem,
+                I&apos;d be glad to discuss it.
               </p>
             </div>
             <div className="flex flex-wrap gap-3 lg:justify-end">
               <ButtonPrimary
                 href="mailto:nishantkhandhar.us@gmail.com"
-                label="Start a Project"
+                label="Get in touch"
                 icon="chevron_right"
               />
             </div>

@@ -115,8 +115,8 @@ const Skills = () => {
             </h2>
           </div>
           <p className="max-w-[44ch] text-sm leading-relaxed text-ink-600 dark:text-ink-300">
-            The languages, frameworks and platforms I reach for most — from
-            backend services and data stores to LLM tooling and cloud infra.
+            The languages, frameworks and platforms I work with most, across
+            backend services, data stores, cloud infrastructure and LLM tooling.
           </p>
         </div>
 

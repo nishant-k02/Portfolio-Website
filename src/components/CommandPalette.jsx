@@ -7,7 +7,7 @@ const commands = [
   { group: "Navigate", label: "Journey", hint: "Experience & education timeline", icon: "work", href: "#education-experience" },
   { group: "Navigate", label: "Skills", hint: "Toolbox", icon: "code", href: "#skills" },
   { group: "Navigate", label: "Projects", hint: "Case studies", icon: "folder_open", href: "#work" },
-  { group: "Navigate", label: "Contact", hint: "Send a message or book time", icon: "mail", href: "#contact" },
+  { group: "Navigate", label: "Contact", hint: "Book a call or send a message", icon: "mail", href: "#contact" },
   { group: "Actions", label: "Download résumé", hint: "PDF", icon: "download", href: "/files/resume.pdf", download: true },
   { group: "Actions", label: "Email me", hint: "nishantkhandhar.us@gmail.com", icon: "alternate_email", href: "mailto:nishantkhandhar.us@gmail.com" },
   { group: "Actions", label: "Toggle theme", hint: "Light / dark", icon: "contrast", action: "theme" },
@@ -102,7 +102,7 @@ const CommandPalette = ({ open, onClose, onToggleTheme }) => {
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             onKeyDown={onKeyDown}
-            placeholder="Jump to a section, open a link…"
+            placeholder="Search sections and links"
             className="h-14 w-full bg-transparent text-[15px] outline-none placeholder:text-ink-400"
             aria-label="Search commands"
           />

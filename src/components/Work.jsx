@@ -47,8 +47,8 @@ const Work = () => {
               Projects I&apos;m <span className="text-gradient">proud of</span>
             </h2>
             <p className="max-w-[52ch] text-sm leading-relaxed text-ink-600 dark:text-ink-300">
-              Case studies covering the problem, the architecture and what
-              shipped. Click any card for the full story.
+              Each case study covers the problem, the architecture and the
+              outcome. Select a project for the full write-up.
             </p>
           </div>
           <div className="hidden items-center gap-2 md:flex">
@@ -184,7 +184,7 @@ const Work = () => {
           <span className="font-semibold text-brand-600 dark:text-brand-300">
             {projects.length}
           </span>{" "}
-          projects and counting - more on{" "}
+          projects. More on{" "}
           <a
             href="https://www.github.com/nishant-k02"
             target="_blank"

@@ -122,7 +122,7 @@ const MessageForm = () => (
       <textarea
         name="message"
         id="message"
-        placeholder="Tell me about your project or role…"
+        placeholder="Role, project or question"
         required
         className="text-field min-h-36 max-h-80 resize-y"
       ></textarea>
@@ -132,7 +132,7 @@ const MessageForm = () => (
       <span className="material-symbols-rounded">send</span>
     </button>
     <p className="mt-3 text-center text-xs text-ink-500 dark:text-ink-400">
-      I&apos;ll get back to you as soon as I can.
+      I typically reply within one business day.
     </p>
   </form>
 );
@@ -157,13 +157,12 @@ const Contact = () => {
           <div className="reveal flex flex-col">
             <span className="eyebrow">05 — Contact</span>
             <h2 className="headline-2 mt-4">
-              Let&apos;s build something{" "}
-              <span className="text-gradient">together</span>
+              Get in <span className="text-gradient">touch</span>
             </h2>
             <p className="lead mt-4 max-w-[42ch]">
-              I&apos;m interested in software engineering, full-stack and AI
-              roles where reliable systems change real outcomes. Book a call or
-              drop me a note.
+              Open to software engineering, full-stack and AI roles where
+              reliable systems drive measurable outcomes. Book a call or send a
+              message below.
             </p>
 
             <ul className="mt-8 space-y-3">

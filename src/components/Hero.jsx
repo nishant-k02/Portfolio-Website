@@ -54,21 +54,27 @@ const Hero = () => {
               className="headline-1 reveal mt-6"
               style={{ transitionDelay: "80ms" }}
             >
-              Hi, I&apos;m Nishant.
-              <br />I build{" "}
+              Nishant Khandhar
+            </h1>
+
+            <p
+              className="reveal mt-4 font-display text-2xl font-semibold leading-snug tracking-[-0.01em] text-ink-800 dark:text-ink-100 sm:text-[28px]"
+              style={{ transitionDelay: "120ms" }}
+            >
+              Building{" "}
               <span className="text-gradient animate-shimmer">
                 scalable products
-              </span>
-              <br className="hidden sm:block" /> and AI‑driven systems.
-            </h1>
+              </span>{" "}
+              and AI‑driven systems.
+            </p>
 
             <p
               className="lead reveal mt-6 max-w-[52ch]"
               style={{ transitionDelay: "160ms" }}
             >
-              Software Engineer focused on full‑stack development, cloud
-              architecture and LLM‑powered automation. Currently shipping at
-              Reliance IQ; previously Nokia and ONEBIT.
+              Software Engineer specialising in full‑stack development, cloud
+              architecture and LLM‑powered automation. Currently at Reliance IQ;
+              previously Nokia and ONEBIT.
             </p>
 
             <div

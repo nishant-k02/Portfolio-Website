@@ -27,18 +27,18 @@ const highlights = [
 const principles = [
   {
     icon: "verified",
-    title: "Build for production",
-    text: "Reliability, tests and observability are features, not cleanup work.",
+    title: "Production-ready by default",
+    text: "Reliability, testing and observability are built in, not added afterwards.",
   },
   {
     icon: "insights",
-    title: "Measure the outcome",
-    text: "Every system should change a metric someone cares about - and prove it.",
+    title: "Measurable outcomes",
+    text: "Every system is tied to a metric it is expected to move, and measured against it.",
   },
   {
     icon: "handshake",
-    title: "Ship with the team",
-    text: "Clear PRs, docs and mentoring make the whole team faster, not just me.",
+    title: "Built with the team",
+    text: "Clear pull requests, documentation and mentoring keep the whole team moving.",
   },
 ];
 
@@ -51,7 +51,7 @@ const About = () => {
         <div className="section-head reveal">
           <span className="eyebrow">01 — About me</span>
           <h2 className="headline-2">
-            Software Developer &amp;{" "}
+            Software Engineer &amp;{" "}
             <span className="text-gradient">AI enthusiast</span>
           </h2>
         </div>
@@ -64,24 +64,24 @@ const About = () => {
             </p>
 
             <p className="mt-4 text-[15px] leading-relaxed text-ink-700 dark:text-ink-200">
-              Hello! I&apos;m Nishant, a Software Engineer focused on full-stack
-              development, AI systems, and scalable backend applications. I
-              enjoy building tools that solve real problems and improve how
-              teams work. I recently completed my Master&apos;s in Computer
-              Science at Illinois Institute of Technology with a 3.8 GPA. During
-              my program, I also worked as a Graduate Teaching Assistant and led
-              coding sessions for students in software engineering courses. At
-              Nokia, I built an internal RAG pipeline using ChromaDB to automate
-              ETL processing for feature PDFs. The system reduced manual effort
-              by 83% and improved how teams generated automated test plans. I
-              also developed a code review automation pipeline that reduced
-              review time by 20% and built a PCAP traffic analysis tool that
-              increased processing throughput by 50%. Previously at ONEBIT, I
-              improved transaction categorization for 200–400 businesses by
-              building intelligent filters and AI-based categorization systems.
-              This reduced manual review time by 71% and improved reporting
-              accuracy. I also helped increase platform reliability by
-              implementing automated testing with 90%+ test coverage.
+              I&apos;m a Software Engineer focused on full-stack development, AI
+              systems, and scalable backend applications, building tools that
+              solve real problems and improve how teams work. I recently
+              completed my Master&apos;s in Computer Science at Illinois
+              Institute of Technology with a 3.8 GPA. During my program, I also
+              worked as a Graduate Teaching Assistant and led coding sessions
+              for students in software engineering courses. At Nokia, I built an
+              internal RAG pipeline using ChromaDB to automate ETL processing
+              for feature PDFs. The system reduced manual effort by 83% and
+              improved how teams generated automated test plans. I also
+              developed a code review automation pipeline that reduced review
+              time by 20% and built a PCAP traffic analysis tool that increased
+              processing throughput by 50%. Previously at ONEBIT, I improved
+              transaction categorization for 200–400 businesses by building
+              intelligent filters and AI-based categorization systems. This
+              reduced manual review time by 71% and improved reporting accuracy.
+              I also helped increase platform reliability by implementing
+              automated testing with 90%+ test coverage.
             </p>
 
             <div className={`md:block ${isExpanded ? "block" : "hidden"}`}>

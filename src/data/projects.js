@@ -33,7 +33,7 @@ const projects = [
         { step: "Regenerate", text: "Only accepted edits are applied deterministically; the original resume is preserved." },
       ],
       challenge:
-        "Most ATS checkers either keyword-stuff or hand-wave with a single opaque score. Candidates need to know which requirements they miss, why, and what to change — without an LLM silently rewriting their whole resume.",
+        "Most ATS checkers either match keywords naively or return a single opaque score. Candidates need to know which requirements they miss, why, and what to change — without an LLM silently rewriting their whole resume.",
       approach:
         "I combined rule-based ATS heuristics with LLM semantic analysis. The heuristics keep scores honest and stable; Claude handles requirement-level reasoning and rewrite suggestions, validated with Zod schemas so the UI never receives malformed output. Suggestions are non-destructive until explicitly accepted.",
       outcome:
@@ -55,7 +55,7 @@ const projects = [
     title: "ShopHub – AI-Powered E-commerce Platform",
     category: "Full-stack · Conversational commerce",
     tagline:
-      "A Next.js 15 storefront with JWT auth, cart, wishlist and checkout — plus a LangChain shopping assistant that finds products, adds them to your cart and tracks orders in plain English.",
+      "A Next.js 15 storefront with JWT auth, cart, wishlist and checkout — plus a LangChain shopping assistant that finds products, adds them to the cart and tracks orders in plain English.",
     imgSrc: "/images/project10.jpg",
     tags: ["Next.js 15", "React 19", "TypeScript", "MongoDB Atlas", "LangChain", "LangGraph", "OpenAI", "JWT", "Tailwind"],
     projectLink: "https://shop-hub-ecommerce.vercel.app",
@@ -74,11 +74,11 @@ const projects = [
         { step: "Checkout", text: "Address and payment validation, saved payment methods, tax/shipping, order history and cancellation." },
       ],
       challenge:
-        "Keyword search can't answer “something for a Chicago winter under $100”, and most chatbots only talk — they can't actually do anything in the store. I wanted an assistant that reasons over the real catalogue and can take actions.",
+        "Keyword search can't answer “something for a Chicago winter under $100”, and most assistants can only talk; they cannot act on the catalogue. The goal was an assistant that reasons over live product data and can take action.",
       approach:
         "Built the platform on Next.js 15 App Router with API routes over MongoDB Atlas, then gave the assistant tool access via LangChain and LangGraph: product search, add-to-cart and order lookup are tools the GPT-3.5-turbo agent can call, so answers are grounded in live data and side effects are explicit.",
       outcome:
-        "A deployed, end-to-end store — auth, catalogue, cart, wishlist, checkout, order tracking — where the AI assistant is a first-class way to shop, not a widget.",
+        "A deployed, end-to-end store — auth, catalogue, cart, wishlist, checkout, order tracking — where the AI assistant is a first-class way to shop rather than an add-on.",
       contribution: [
         "Designed and built the full stack: Next.js app, API routes, MongoDB schema and seed scripts.",
         "Implemented JWT/HTTP-only-cookie auth, protected routes and input validation on every endpoint.",
@@ -155,7 +155,7 @@ const projects = [
       challenge:
         "Insurance claims start with a photo, and triaging where and how badly a car is damaged is slow and inconsistent by hand. We wanted a browser tool that gives a structured assessment from a single image.",
       approach:
-        "Rather than train one big model on limited data, we used VGG16 pre-trained on ImageNet as a frozen feature extractor and chained small scikit-learn classifiers on its fc1 features — one gate per question (car? damaged? where? how bad?). Django wraps the pipeline so assessors just upload a photo.",
+        "Rather than training a single large model on a limited dataset, we used VGG16 pre-trained on ImageNet as a frozen feature extractor and chained small scikit-learn classifiers on its fc1 features — one gate per question (car? damaged? where? how bad?). Django wraps the pipeline so assessors just upload a photo.",
       outcome:
         "A working end-to-end assessment tool that returns damage presence, location and severity plus a heat-map, built with a four-person team as our final-year project.",
       contribution: [

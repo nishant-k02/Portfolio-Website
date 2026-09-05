@@ -266,8 +266,8 @@ const MeetingForm = () => {
             Book a {MEETING_MINUTES}-minute call
           </h3>
           <p className="mt-2 text-sm leading-relaxed text-ink-600 dark:text-ink-300">
-            Pick any open slot on my calendar - it&apos;s booked on the spot and
-            we both get the invite straight away.
+            Select an open slot on my calendar. The meeting is confirmed
+            immediately and we both receive the invite.
           </p>
         </div>
 
@@ -307,7 +307,7 @@ const MeetingForm = () => {
             <span className="material-symbols-rounded">arrow_outward</span>
           </a>
           <p className="mt-3 text-center text-xs text-ink-500 dark:text-ink-400">
-            Opens my Google Calendar booking page - no account needed.
+            Opens my Google Calendar booking page.
           </p>
         </div>
       </div>
@@ -331,7 +331,7 @@ const MeetingForm = () => {
           <span className="font-medium text-ink-900 dark:text-ink-50">
             {booked.humanTime}
           </span>{" "}
-          by email shortly. Add it to your calendar so it&apos;s already there:
+          by email. Add it to your calendar now:
         </p>
 
         {differentZone && (
@@ -386,8 +386,7 @@ const MeetingForm = () => {
             </button>
           </div>
           <p className="mt-2 text-xs text-ink-500 dark:text-ink-400">
-            It&apos;s in the calendar entry too — no app or account needed to
-            join.
+            Included in the calendar entry. No account required to join.
           </p>
         </div>
 
@@ -446,8 +445,8 @@ const MeetingForm = () => {
             {HOST_TIMEZONE_LABEL} · {MEETING_MINUTES} min
           </p>
           <p className="mt-1 text-xs text-ink-500 dark:text-ink-400">
-            Times aren&apos;t checked against my calendar yet — I&apos;ll
-            confirm or offer the nearest free slot.
+            These times are not checked against my calendar. I&apos;ll confirm
+            or propose the nearest available slot.
           </p>
         </div>
       </div>
@@ -472,7 +471,7 @@ const MeetingForm = () => {
         />
         {weekend && (
           <p className="mt-2 text-xs text-amber-600 dark:text-amber-400">
-            That&apos;s a weekend - please pick a weekday.
+            Weekends are unavailable — please choose a weekday.
           </p>
         )}
       </div>
@@ -557,27 +556,27 @@ const MeetingForm = () => {
       </div>
       <div className="mt-4">
         <label htmlFor="m-purpose" className="label">
-          What&apos;s it about?
+          Topic
         </label>
         <input
           id="m-purpose"
           required
           value={form.purpose}
           onChange={update("purpose")}
-          placeholder="Role, team, or topic"
+          placeholder="Role, team or subject"
           className="text-field"
         />
       </div>
       <div className="mt-4">
         <label htmlFor="m-notes" className="label">
-          Anything else{" "}
+          Additional details{" "}
           <span className="font-normal text-ink-400">(optional)</span>
         </label>
         <textarea
           id="m-notes"
           value={form.notes}
           onChange={update("notes")}
-          placeholder="Links, context, questions…"
+          placeholder="Links or context"
           className="text-field max-h-40 min-h-20 resize-y"
         />
       </div>
@@ -591,14 +590,14 @@ const MeetingForm = () => {
           ? "Sending…"
           : slot
             ? "Request this time"
-            : "Pick a time above"}
+            : "Select a time above"}
         {status !== "sending" && (
           <span className="material-symbols-rounded">arrow_forward</span>
         )}
       </button>
       <p className="mt-3 text-center text-xs text-ink-500 dark:text-ink-400">
-        You&apos;ll get a video call link and calendar invite right away — I
-        confirm the slot by email.
+        You&apos;ll receive a video link and calendar invite immediately;
+        I&apos;ll confirm the slot by email.
       </p>
     </form>
   );
