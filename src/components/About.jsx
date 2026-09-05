@@ -146,7 +146,7 @@ const About = () => {
           </div>
 
           {/* Highlights */}
-          <div className="grid gap-4">
+          <div className="grid content-start gap-4">
             {highlights.map(({ icon, title, text }, i) => (
               <div
                 key={title}
