@@ -1,84 +1,57 @@
 import PropTypes from "prop-types";
 
-const ButtonPrimary = ({ href, target = "_self", label, icon, classes }) => {
-  if (href) {
-    return (
-      <a
-        download
-        href={href}
-        target={target}
-        className={"btn btn-primary " + classes}
-      >
-        {label}
+const Inner = ({ label, icon }) => (
+  <>
+    {label}
+    {icon ? (
+      <span className="material-symbols-rounded" aria-hidden="true">
+        {icon}
+      </span>
+    ) : null}
+  </>
+);
 
-        {icon ? (
-          <span className="material-symbols-rounded" aria-hidden="true">
-            {icon}
-          </span>
-        ) : undefined}
-      </a>
-    );
-  } else {
-    return (
-      <button className={"btn btn-primary " + classes}>
-        {label}
+Inner.propTypes = {
+  label: PropTypes.string.isRequired,
+  icon: PropTypes.string,
+};
 
-        {icon ? (
-          <span className="material-symbols-rounded" aria-hidden="true">
-            {icon}
-          </span>
-        ) : undefined}
+const makeButton = (variant) => {
+  const Button = ({ href, target = "_self", label, icon, classes = "", download }) => {
+    const className = `btn ${variant} ${classes}`.trim();
+    if (href) {
+      return (
+        <a
+          href={href}
+          target={target}
+          rel={target === "_blank" ? "noopener noreferrer" : undefined}
+          download={download}
+          className={className}
+        >
+          <Inner label={label} icon={icon} />
+        </a>
+      );
+    }
+    return (
+      <button className={className}>
+        <Inner label={label} icon={icon} />
       </button>
     );
-  }
+  };
+
+  Button.propTypes = {
+    label: PropTypes.string.isRequired,
+    href: PropTypes.string,
+    target: PropTypes.string,
+    icon: PropTypes.string,
+    classes: PropTypes.string,
+    download: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
+  };
+
+  return Button;
 };
 
-ButtonPrimary.propTypes = {
-  label: PropTypes.string.isRequired,
-  href: PropTypes.string,
-  target: PropTypes.string,
-  icon: PropTypes.string,
-  classes: PropTypes.string,
-};
-
-/**
- * Outline Button
- */
-
-const ButtonOutline = ({ href, target = "_self", label, icon, classes }) => {
-  if (href) {
-    return (
-      <a href={href} target={target} className={"btn btn-outline " + classes}>
-        {label}
-
-        {icon ? (
-          <span className="material-symbols-rounded" aria-hidden="true">
-            {icon}
-          </span>
-        ) : undefined}
-      </a>
-    );
-  } else {
-    return (
-      <button className={"btn btn-outline " + classes}>
-        {label}
-
-        {icon ? (
-          <span className="material-symbols-rounded" aria-hidden="true">
-            {icon}
-          </span>
-        ) : undefined}
-      </button>
-    );
-  }
-};
-
-ButtonOutline.propTypes = {
-  label: PropTypes.string.isRequired,
-  href: PropTypes.string,
-  target: PropTypes.string,
-  icon: PropTypes.string,
-  classes: PropTypes.string,
-};
+const ButtonPrimary = makeButton("btn-primary");
+const ButtonOutline = makeButton("btn-outline");
 
 export { ButtonPrimary, ButtonOutline };

@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 const socialLinks = [
   {
     href: "https://www.github.com/nishant-k02",
@@ -73,83 +75,347 @@ const socialLinks = [
   },
 ];
 
+const EMAIL = "nishantkhandhar.us@gmail.com";
+
+const contactInfo = [
+  { icon: "mail", label: "Email", value: EMAIL, href: `mailto:${EMAIL}` },
+  {
+    icon: "location_on",
+    label: "Based in",
+    value: "Chicago, IL · open to remote & relocation",
+  },
+  { icon: "schedule", label: "Response time", value: "Usually within a day" },
+];
+
+const timeSlots = [
+  "9:00 AM",
+  "10:00 AM",
+  "11:00 AM",
+  "1:00 PM",
+  "2:00 PM",
+  "3:00 PM",
+  "4:00 PM",
+];
+
+const todayISO = () => {
+  const d = new Date();
+  d.setDate(d.getDate() + 1);
+  return d.toISOString().slice(0, 10);
+};
+
+const MeetingForm = () => {
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    purpose: "",
+    date: "",
+    time: "",
+  });
+  const update = (k) => (e) => setForm((f) => ({ ...f, [k]: e.target.value }));
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    const when = form.date
+      ? new Date(form.date + "T12:00:00").toLocaleDateString("en-US", {
+          weekday: "long",
+          month: "long",
+          day: "numeric",
+          year: "numeric",
+        })
+      : "a time that suits you";
+    const subject = encodeURIComponent(
+      `Meeting request: ${form.purpose || "Intro call"} — ${form.name}`,
+    );
+    const body = encodeURIComponent(
+      `Hi Nishant,\n\nI'd like to schedule a call.\n\nName: ${form.name}\nEmail: ${form.email}\nPurpose: ${form.purpose}\nPreferred time: ${when}${form.time ? ` at ${form.time} Central` : ""}\n\nThanks!`,
+    );
+    window.location.href = `mailto:${EMAIL}?subject=${subject}&body=${body}`;
+  };
+
+  return (
+    <form onSubmit={onSubmit}>
+      <div className="mb-5 flex items-start gap-3 rounded-2xl border border-emerald-300/60 bg-emerald-50/70 p-4 dark:border-emerald-400/20 dark:bg-emerald-400/10">
+        <span className="material-symbols-rounded text-[22px] text-emerald-600 dark:text-emerald-300">
+          event_available
+        </span>
+        <div>
+          <p className="text-sm font-semibold">Recruiter &amp; intro calls</p>
+          <p className="text-xs text-ink-600 dark:text-ink-300">
+            Weekdays · 9:00 AM – 5:00 PM Central · 20–30 min
+          </p>
+        </div>
+      </div>
+
+      <div className="grid gap-4 md:grid-cols-2">
+        <div>
+          <label htmlFor="m-name" className="label">
+            Name
+          </label>
+          <input
+            id="m-name"
+            required
+            value={form.name}
+            onChange={update("name")}
+            placeholder="Your name"
+            autoComplete="name"
+            className="text-field"
+          />
+        </div>
+        <div>
+          <label htmlFor="m-email" className="label">
+            Work email
+          </label>
+          <input
+            id="m-email"
+            type="email"
+            required
+            value={form.email}
+            onChange={update("email")}
+            placeholder="you@company.com"
+            autoComplete="email"
+            className="text-field"
+          />
+        </div>
+      </div>
+      <div className="mt-4">
+        <label htmlFor="m-purpose" className="label">
+          Meeting purpose
+        </label>
+        <input
+          id="m-purpose"
+          required
+          value={form.purpose}
+          onChange={update("purpose")}
+          placeholder="Role, team, or topic"
+          className="text-field"
+        />
+      </div>
+      <div className="mt-4 grid gap-4 md:grid-cols-2">
+        <div>
+          <label htmlFor="m-date" className="label">
+            Preferred date
+          </label>
+          <input
+            id="m-date"
+            type="date"
+            min={todayISO()}
+            value={form.date}
+            onChange={update("date")}
+            className="text-field"
+          />
+        </div>
+        <div>
+          <label htmlFor="m-time" className="label">
+            Preferred time (Central)
+          </label>
+          <select
+            id="m-time"
+            value={form.time}
+            onChange={update("time")}
+            className="text-field"
+          >
+            <option value="">Any time</option>
+            {timeSlots.map((t) => (
+              <option key={t} value={t}>
+                {t}
+              </option>
+            ))}
+          </select>
+        </div>
+      </div>
+      <p className="mt-3 text-xs text-ink-500 dark:text-ink-400">
+        This opens a pre-filled email - the time is confirmed once I reply.
+      </p>
+      <button type="submit" className="btn btn-primary mt-5 w-full !max-w-full">
+        Request this time
+        <span className="material-symbols-rounded">arrow_forward</span>
+      </button>
+    </form>
+  );
+};
+
+const MessageForm = () => (
+  <form action="https://getform.io/f/allldxwa" method="POST">
+    <div className="grid gap-4 md:grid-cols-2">
+      <div>
+        <label htmlFor="name" className="label">
+          Name
+        </label>
+        <input
+          type="text"
+          name="name"
+          id="name"
+          autoComplete="name"
+          required
+          placeholder="Your name"
+          className="text-field"
+        />
+      </div>
+      <div>
+        <label htmlFor="email" className="label">
+          Email
+        </label>
+        <input
+          type="email"
+          name="email"
+          id="email"
+          autoComplete="email"
+          required
+          placeholder="you@example.com"
+          className="text-field"
+        />
+      </div>
+    </div>
+    <div className="mt-4">
+      <label htmlFor="message" className="label">
+        Message
+      </label>
+      <textarea
+        name="message"
+        id="message"
+        placeholder="Tell me about your project or role…"
+        required
+        className="text-field min-h-36 max-h-80 resize-y"
+      ></textarea>
+    </div>
+    <button type="submit" className="btn btn-primary mt-6 w-full !max-w-full">
+      Send message
+      <span className="material-symbols-rounded">send</span>
+    </button>
+    <p className="mt-3 text-center text-xs text-ink-500 dark:text-ink-400">
+      I&apos;ll get back to you as soon as I can.
+    </p>
+  </form>
+);
+
+const tabs = [
+  { key: "meeting", label: "Request a meeting", icon: "calendar_month" },
+  { key: "message", label: "Send a message", icon: "chat_bubble" },
+];
+
 const Contact = () => {
+  const [tab, setTab] = useState("meeting");
+
   return (
     <section id="contact" className="section">
-      <div className="container lg:grid lg:grid-cols-2 lg:items-stretch">
-        <div className="mb-12 lg:mb-0 lg:flex lg:flex-col">
-          <h2 className="headline-2 lg:max-w-[12ch]">Contact Me</h2>
-          <p className="text-zinc-600 dark:text-zinc-400 mt-3 mb-8 max-w-[50ch] lg:max-w-[30ch]:">
-            Reach out to me through any of the following platforms. I&apos;m always
-            open to new opportunities and collaborations.
-          </p>
-          <div className="flex items-center gap-2 mt-auto">
-            {socialLinks.map(({ href, icon }, key) => (
-              <a
-                key={key}
-                href={href}
-                target="_blank"
-                className="w-12 h-12 grid place-items-center ring-inset ring-2 ring-zinc-900/10 dark:ring-zinc-50/5 rounded-lg transition-[background-color, color] hover:bg-zinc-900 hover:text-zinc-50 dark:hover:bg-zinc-50 dark:hover:text-zinc-900 active:bg-zinc-900/80 dark:active:bg-zinc-50/80"
-              >
-                {icon}
-              </a>
-            ))}
+      <div
+        className="blob -left-32 bottom-0 h-96 w-96 bg-violet-500/20"
+        aria-hidden="true"
+      />
+
+      <div className="container">
+        <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:gap-12">
+          <div className="reveal flex flex-col">
+            <span className="eyebrow">05 — Contact</span>
+            <h2 className="headline-2 mt-4">
+              Let&apos;s build something{" "}
+              <span className="text-gradient">together</span>
+            </h2>
+            <p className="lead mt-4 max-w-[42ch]">
+              I&apos;m interested in software engineering, full-stack and AI
+              roles where reliable systems change real outcomes. Book a call or
+              drop me a note.
+            </p>
+
+            <ul className="mt-8 space-y-3">
+              {contactInfo.map(({ icon, label, value, href }) => (
+                <li key={label} className="flex items-center gap-3">
+                  <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl border border-ink-200/80 bg-white/70 text-brand-600 dark:border-white/10 dark:bg-white/[0.04] dark:text-brand-300">
+                    <span className="material-symbols-rounded text-[20px]">
+                      {icon}
+                    </span>
+                  </span>
+                  <div className="min-w-0">
+                    <p className="text-xs font-medium uppercase tracking-wider text-ink-500 dark:text-ink-400">
+                      {label}
+                    </p>
+                    {href ? (
+                      <a
+                        href={href}
+                        className="block truncate text-sm font-medium text-ink-900 hover:text-brand-600 dark:text-ink-50 dark:hover:text-brand-300"
+                      >
+                        {value}
+                      </a>
+                    ) : (
+                      <p className="text-sm font-medium text-ink-900 dark:text-ink-50">
+                        {value}
+                      </p>
+                    )}
+                  </div>
+                </li>
+              ))}
+              <li className="flex items-center gap-3">
+                <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl border border-ink-200/80 bg-white/70 text-brand-600 dark:border-white/10 dark:bg-white/[0.04] dark:text-brand-300">
+                  <span className="material-symbols-rounded text-[20px]">
+                    description
+                  </span>
+                </span>
+                <div className="min-w-0">
+                  <p className="text-xs font-medium uppercase tracking-wider text-ink-500 dark:text-ink-400">
+                    Résumé
+                  </p>
+                  <a
+                    href="/files/resume.pdf"
+                    download
+                    className="block text-sm font-medium text-ink-900 hover:text-brand-600 dark:text-ink-50 dark:hover:text-brand-300"
+                  >
+                    Download PDF
+                  </a>
+                </div>
+              </li>
+            </ul>
+
+            <div className="mt-auto flex items-center gap-2 pt-10">
+              {socialLinks.map(({ href, icon, alt }) => (
+                <a
+                  key={alt}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={alt}
+                  className="grid h-11 w-11 place-items-center rounded-xl border border-ink-200/80 bg-white/70 text-ink-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-brand-300 hover:text-brand-600 dark:border-white/10 dark:bg-white/[0.04] dark:text-ink-200 dark:hover:border-brand-400/50 dark:hover:text-brand-300"
+                >
+                  {icon}
+                </a>
+              ))}
+            </div>
+          </div>
+
+          <div
+            className="card reveal overflow-hidden"
+            style={{ transitionDelay: "120ms" }}
+          >
+            <div
+              className="grid grid-cols-2 border-b border-ink-200/70 bg-ink-50/60 p-1.5 dark:border-white/[0.06] dark:bg-white/[0.02]"
+              role="tablist"
+            >
+              {tabs.map(({ key, label, icon }) => (
+                <button
+                  key={key}
+                  role="tab"
+                  aria-selected={tab === key}
+                  onClick={() => setTab(key)}
+                  className={`inline-flex items-center justify-center gap-2 rounded-xl px-3 py-2.5 text-sm font-semibold transition-colors ${
+                    tab === key
+                      ? "bg-white text-ink-900 shadow-card dark:bg-ink-900 dark:text-white"
+                      : "text-ink-500 hover:text-ink-900 dark:text-ink-400 dark:hover:text-white"
+                  }`}
+                >
+                  <span className="material-symbols-rounded text-[18px]">
+                    {icon}
+                  </span>
+                  <span className="hidden sm:inline">{label}</span>
+                  <span className="sm:hidden">
+                    {key === "meeting" ? "Meeting" : "Message"}
+                  </span>
+                </button>
+              ))}
+            </div>
+            <div className="p-6 sm:p-8">
+              {tab === "meeting" ? <MeetingForm /> : <MessageForm />}
+            </div>
           </div>
         </div>
-        <form
-          action="https://getform.io/f/allldxwa"
-          method="POST"
-          className="xl:pl-10 2xl:pl-20"
-        >
-          <div className="md:grid md:items-center md:grid-cols-2 md:gap-2">
-            <div className="mb-4">
-              <label htmlFor="name" className="label">
-                Name
-              </label>
-              <input
-                type="text"
-                name="name"
-                id="name"
-                autoComplete="name"
-                required
-                placeholder="Your Name"
-                className="text-field"
-              />
-            </div>
-            <div className="mb-4">
-              <label htmlFor="email" className="label">
-                Email
-              </label>
-              <input
-                type="email"
-                name="email"
-                id="email"
-                autoComplete="Your email"
-                required
-                placeholder="example@gmail.com"
-                className="text-field"
-              />
-            </div>
-          </div>
-          <div className="mb-4">
-            <label htmlFor="message" className="label">
-              Message
-            </label>
-            <textarea
-              name="message"
-              id="message"
-              placeholder="Enter your message here"
-              required
-              className="text-field resize-y min-h-32 max-h-80"
-            ></textarea>
-          </div>
-          <button
-            type="submit"
-            className="btn btn-primary [&]:max-w-full w-full justify-center"
-          >
-            Submit
-          </button>
-        </form>
       </div>
     </section>
   );

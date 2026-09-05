@@ -1,89 +1,95 @@
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useCallback } from "react";
 import PropTypes from "prop-types";
 
+const navItems = [
+  { label: "Home", link: "#home" },
+  { label: "About", link: "#about" },
+  { label: "Experience", link: "#education-experience" },
+  { label: "Skills", link: "#skills" },
+  { label: "Projects", link: "#work" },
+  { label: "Contact", link: "#contact", className: "md:hidden" },
+];
+
 const Navbar = ({ navOpen, setNavOpen }) => {
-  const lastActiveLink = useRef();
-  const activeBox = useRef();
+  const lastActiveLink = useRef(null);
+  const activeBox = useRef(null);
+  const linkRefs = useRef([]);
 
-  const initActiveBox = () => {
-    if (!activeBox.current || !lastActiveLink.current) return;
-
-    activeBox.current.style.top = lastActiveLink.current.offsetTop + "px";
-    activeBox.current.style.left = lastActiveLink.current.offsetLeft + "px";
-    activeBox.current.style.width = lastActiveLink.current.offsetWidth + "px";
-    activeBox.current.style.height = lastActiveLink.current.offsetHeight + "px";
+  const moveBox = (el) => {
+    if (!activeBox.current || !el) return;
+    activeBox.current.style.top = el.offsetTop + "px";
+    activeBox.current.style.left = el.offsetLeft + "px";
+    activeBox.current.style.width = el.offsetWidth + "px";
+    activeBox.current.style.height = el.offsetHeight + "px";
   };
 
-  useEffect(() => {
-    initActiveBox();
-    window.addEventListener("resize", initActiveBox);
-    return () => window.removeEventListener("resize", initActiveBox);
+  const setActive = useCallback((el) => {
+    if (!el || lastActiveLink.current === el) return;
+    lastActiveLink.current?.classList.remove("active");
+    el.classList.add("active");
+    lastActiveLink.current = el;
+    moveBox(el);
   }, []);
 
-  const activeCurrentLink = (event) => {
-    lastActiveLink.current?.classList.remove("active");
-    event.target.classList.add("active");
-    lastActiveLink.current = event.target;
+  // Initial position + keep it aligned on resize (and once fonts load)
+  useEffect(() => {
+    const first = linkRefs.current[0];
+    if (first) {
+      first.classList.add("active");
+      lastActiveLink.current = first;
+      moveBox(first);
+    }
+    const onResize = () => moveBox(lastActiveLink.current);
+    window.addEventListener("resize", onResize);
+    document.fonts?.ready?.then(onResize);
+    return () => window.removeEventListener("resize", onResize);
+  }, []);
 
-    if (!activeBox.current) return;
+  // Highlight the section currently in view
+  useEffect(() => {
+    const sections = navItems
+      .map(({ link }) => document.querySelector(link))
+      .filter(Boolean);
+    if (!sections.length || !("IntersectionObserver" in window)) return;
 
-    activeBox.current.style.top = event.target.offsetTop + "px";
-    activeBox.current.style.left = event.target.offsetLeft + "px";
-    activeBox.current.style.width = event.target.offsetWidth + "px";
-    activeBox.current.style.height = event.target.offsetHeight + "px";
-    
-    // Close mobile menu when nav item is clicked
+    const io = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((e) => e.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+        if (!visible) return;
+        const idx = navItems.findIndex(
+          ({ link }) => link === `#${visible.target.id}`,
+        );
+        // On desktop the Contact link is hidden; keep the pill on Projects there.
+        const el = linkRefs.current[idx];
+        if (el && el.offsetParent !== null) setActive(el);
+      },
+      { rootMargin: "-40% 0px -50% 0px", threshold: [0, 0.2, 0.5] },
+    );
+    sections.forEach((s) => io.observe(s));
+    return () => io.disconnect();
+  }, [setActive]);
+
+  const onClick = (event) => {
+    setActive(event.currentTarget);
     setNavOpen(false);
   };
 
-  const navItems = [
-    {
-      label: "Home",
-      link: "#home",
-      className: "nav-link active",
-      ref: lastActiveLink,
-    },
-    {
-      label: "About",
-      link: "#about",
-      className: "nav-link",
-    },
-    {
-      label: "Education & Experience",
-      link: "#education-experience",
-      className: "nav-link",
-    },
-    {
-      label: "Skills",
-      link: "#skills",
-      className: "nav-link",
-    },
-    {
-      label: "Projects",
-      link: "#work",
-      className: "nav-link",
-    },
-    {
-      label: "Contact",
-      link: "#contact",
-      className: "nav-link md:hidden",
-    },
-  ];
-
   return (
-    <nav className={"navbar " + (navOpen ? "active" : "")}>
-      {navItems.map(({ label, link, className, ref }, key) => (
+    <nav className={"navbar " + (navOpen ? "active" : "")} aria-label="Primary">
+      {navItems.map(({ label, link, className = "" }, i) => (
         <a
           href={link}
-          key={key}
-          ref={ref}
-          className={className}
-          onClick={activeCurrentLink}
+          key={link}
+          ref={(el) => (linkRefs.current[i] = el)}
+          className={`nav-link ${className}`}
+          onClick={onClick}
         >
           {label}
         </a>
       ))}
-      <div className="active-box" ref={activeBox}></div>
+      <div className="active-box" ref={activeBox} aria-hidden="true"></div>
     </nav>
   );
 };

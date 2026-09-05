@@ -1,131 +1,171 @@
 import { useState } from "react";
 
-const aboutItems = [
+const stats = [
+  { label: "Projects done", value: "15+" },
+  { label: "Years of experience", value: "1+" },
+  { label: "Master's GPA", value: "3.8" },
+];
+
+const highlights = [
   {
-    label: "Project done",
-    number: 15,
+    icon: "auto_awesome",
+    title: "AI & RAG systems",
+    text: "Built an internal RAG pipeline at Nokia that cut manual ETL effort by 83% and sped up automated test-plan generation.",
   },
   {
-    label: "Year of experience",
-    number: 1,
+    icon: "cloud_done",
+    title: "Cloud-native backends",
+    text: "Async reporting pipelines on GCP Pub/Sub and Cloud Functions, Firestore query optimisation with 97% fewer DB calls.",
+  },
+  {
+    icon: "groups",
+    title: "Mentoring & leadership",
+    text: "Graduate Teaching Assistant at IIT and Android Developer Lead for a 50-student team at GDSC Pune.",
+  },
+];
+
+const principles = [
+  {
+    icon: "verified",
+    title: "Build for production",
+    text: "Reliability, tests and observability are features, not cleanup work.",
+  },
+  {
+    icon: "insights",
+    title: "Measure the outcome",
+    text: "Every system should change a metric someone cares about - and prove it.",
+  },
+  {
+    icon: "handshake",
+    title: "Ship with the team",
+    text: "Clear PRs, docs and mentoring make the whole team faster, not just me.",
   },
 ];
 
 const About = () => {
   const [isExpanded, setIsExpanded] = useState(false);
+
   return (
     <section id="about" className="section">
       <div className="container">
-        {/* About Card */}
-        <div className="max-w-6xl mx-auto">
-          <div className="relative p-6 rounded-2xl border border-zinc-200 dark:border-zinc-700 bg-white/80 dark:bg-zinc-900/80 backdrop-blur-sm hover:border-emerald-300 dark:hover:border-emerald-600 hover:shadow-xl hover:shadow-emerald-500/10 transition-all duration-300 group">
-            {/* Header with Icon */}
-            <div className="flex items-center gap-3 mb-6">
-              <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-emerald-400 to-sky-500 flex items-center justify-center">
-                <span className="material-symbols-rounded text-white text-2xl">
-                  person
-                </span>
-              </div>
-              <div>
-                <h3 className="text-xl font-semibold text-zinc-900 dark:text-zinc-50 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">
-                  Software Developer & AI Enthusiast
-                </h3>
-                <p className="text-emerald-600 dark:text-emerald-400 font-medium">
-                  Full-Stack • Cloud Architecture • AI-Driven Systems
-                </p>
-              </div>
-            </div>
+        <div className="section-head reveal">
+          <span className="eyebrow">01 — About me</span>
+          <h2 className="headline-2">
+            Software Developer &amp;{" "}
+            <span className="text-gradient">AI enthusiast</span>
+          </h2>
+        </div>
 
-            {/* About Content */}
-            <div className="space-y-4 mb-6">
-              {/* First paragraph - always visible */}
-              <p className="text-sm text-zinc-700 dark:text-zinc-300 leading-relaxed text-justify">
-                Hello! I&apos;m Nishant, a Software Engineer focused on
-                full-stack development, AI systems, and scalable backend
-                applications. I enjoy building tools that solve real problems
-                and improve how teams work. I recently completed my
-                Master&apos;s in Computer Science at Illinois Institute of
-                Technology with a 3.8 GPA. During my program, I also worked as a
-                Graduate Teaching Assistant and led coding sessions for students
-                in software engineering courses. At Nokia, I built an internal
-                RAG pipeline using ChromaDB to automate ETL processing for
-                feature PDFs. The system reduced manual effort by 83% and
-                improved how teams generated automated test plans. I also
-                developed a code review automation pipeline that reduced review
-                time by 20% and built a PCAP traffic analysis tool that
-                increased processing throughput by 50%. Previously at ONEBIT, I
-                improved transaction categorization for 200–400 businesses by
-                building intelligent filters and AI-based categorization
-                systems. This reduced manual review time by 71% and improved
-                reporting accuracy. I also helped increase platform reliability
-                by implementing automated testing with 90%+ test coverage.
+        <div className="grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">
+          {/* Bio card */}
+          <div className="card reveal p-6 sm:p-8">
+            <p className="text-brand-600 dark:text-brand-300 text-sm font-semibold">
+              Full‑Stack • Cloud Architecture • AI‑Driven Systems
+            </p>
+
+            <p className="mt-4 text-[15px] leading-relaxed text-ink-700 dark:text-ink-200">
+              Hello! I&apos;m Nishant, a Software Engineer focused on full-stack
+              development, AI systems, and scalable backend applications. I
+              enjoy building tools that solve real problems and improve how
+              teams work. I recently completed my Master&apos;s in Computer
+              Science at Illinois Institute of Technology with a 3.8 GPA. During
+              my program, I also worked as a Graduate Teaching Assistant and led
+              coding sessions for students in software engineering courses. At
+              Nokia, I built an internal RAG pipeline using ChromaDB to automate
+              ETL processing for feature PDFs. The system reduced manual effort
+              by 83% and improved how teams generated automated test plans. I
+              also developed a code review automation pipeline that reduced
+              review time by 20% and built a PCAP traffic analysis tool that
+              increased processing throughput by 50%. Previously at ONEBIT, I
+              improved transaction categorization for 200–400 businesses by
+              building intelligent filters and AI-based categorization systems.
+              This reduced manual review time by 71% and improved reporting
+              accuracy. I also helped increase platform reliability by
+              implementing automated testing with 90%+ test coverage.
+            </p>
+
+            <div className={`md:block ${isExpanded ? "block" : "hidden"}`}>
+              <p className="mt-4 text-[15px] leading-relaxed text-ink-700 dark:text-ink-200">
+                My technical background includes React, Next.js, Node.js, Flask,
+                MongoDB, Python, AWS, Docker, Kubernetes, and AI/LLM-based
+                systems. Outside of engineering, I enjoy mentoring developers
+                and leading technical workshops. I previously led a team of 50
+                students as Android Developer Lead at Google Developer Student
+                Clubs in Pune. Open to software engineering, full-stack and AI
+                roles.
               </p>
-
-              {/* Second paragraph - hidden on mobile unless expanded */}
-              <div className={`md:block ${isExpanded ? "block" : "hidden"}`}>
-                <p className="text-sm text-zinc-700 dark:text-zinc-300 leading-relaxed text-justify">
-                  My technical background includes React, Next.js, Node.js,
-                  Flask, MongoDB, Python, AWS, Docker, Kubernetes, and
-                  AI/LLM-based systems. Outside of engineering, I enjoy
-                  mentoring developers and leading technical workshops. I
-                  previously led a team of 50 students as Android Developer Lead
-                  at Google Developer Student Clubs in Pune. Skills: Full-Stack
-                  Development, AI Systems, React, Next.js, Node.js, Flask,
-                  MongoDB, Cloud Architecture, Intelligent Automation. Open to
-                  software engineering, full-stack and AI roles.
-                </p>
-              </div>
-
-              {/* View More/Less Button - only visible on mobile */}
-              <div className="md:hidden">
-                <button
-                  onClick={() => setIsExpanded(!isExpanded)}
-                  className="text-sm text-emerald-600 dark:text-emerald-400 font-medium hover:text-emerald-700 dark:hover:text-emerald-300 transition-colors flex items-center gap-1"
-                >
-                  <span>{isExpanded ? "View less" : "View more"}</span>
-                  <span
-                    className={`material-symbols-rounded text-sm transition-transform duration-200 ${
-                      isExpanded ? "rotate-180" : ""
-                    }`}
-                  >
-                    keyboard_arrow_down
-                  </span>
-                </button>
-              </div>
             </div>
 
-            {/* Stats and Logo */}
-            <div className="flex flex-wrap items-center justify-between gap-6 pt-4 border-t border-zinc-200 dark:border-zinc-700">
-              <div className="flex flex-wrap items-center gap-6">
-                {aboutItems.map(({ label, number }, key) => (
-                  <div key={key} className="text-center">
-                    <div className="flex items-center justify-center mb-1">
-                      <span className="text-2xl font-semibold text-zinc-900 dark:text-zinc-50 md:text-3xl">
-                        {number}
-                      </span>
-                      <span className="text-emerald-500 font-semibold md:text-2xl">
-                        +
-                      </span>
-                    </div>
-                    <p className="text-xs text-zinc-600 dark:text-zinc-400 font-medium">
-                      {label}
-                    </p>
-                  </div>
-                ))}
-              </div>
+            <button
+              onClick={() => setIsExpanded(!isExpanded)}
+              className="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-brand-600 transition-colors hover:text-brand-700 dark:text-brand-300 dark:hover:text-brand-200 md:hidden"
+            >
+              {isExpanded ? "View less" : "View more"}
+              <span
+                className={`material-symbols-rounded text-base transition-transform duration-200 ${
+                  isExpanded ? "rotate-180" : ""
+                }`}
+              >
+                keyboard_arrow_down
+              </span>
+            </button>
 
-              <div className="flex items-center justify-end">
-                <div className="w-10 h-10 rounded-lg grid place-items-center bg-emerald-400 text-zinc-950 shrink-0 hover:bg-emerald-300 transition-colors">
-                  <img
-                    src="/images/logo.svg"
-                    alt="Logo"
-                    width={24}
-                    height={24}
-                    className="brightness-0 transition-all duration-300"
-                  />
+            <div className="divider my-6" />
+
+            <div className="grid gap-3 sm:grid-cols-3">
+              {principles.map(({ icon, title, text }) => (
+                <div
+                  key={title}
+                  className="rounded-2xl border border-ink-200/70 bg-white/60 p-4 dark:border-white/[0.06] dark:bg-white/[0.03]"
+                >
+                  <span className="material-symbols-rounded text-[22px] text-brand-500">
+                    {icon}
+                  </span>
+                  <p className="mt-2 text-sm font-semibold">{title}</p>
+                  <p className="mt-1 text-xs leading-relaxed text-ink-600 dark:text-ink-300">
+                    {text}
+                  </p>
+                </div>
+              ))}
+            </div>
+
+            <div className="divider my-6" />
+
+            <div className="grid grid-cols-3 gap-4">
+              {stats.map(({ label, value }) => (
+                <div key={label}>
+                  <p className="font-display text-2xl font-semibold sm:text-3xl">
+                    <span className="text-gradient">{value}</span>
+                  </p>
+                  <p className="mt-1 text-xs font-medium text-ink-500 dark:text-ink-300">
+                    {label}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Highlights */}
+          <div className="grid gap-4">
+            {highlights.map(({ icon, title, text }, i) => (
+              <div
+                key={title}
+                className="card card-hover reveal flex gap-4 p-5"
+                style={{ transitionDelay: `${100 + i * 90}ms` }}
+              >
+                <span className="icon-tile">
+                  <span className="material-symbols-rounded text-[22px]">
+                    {icon}
+                  </span>
+                </span>
+                <div>
+                  <h3 className="title-1">{title}</h3>
+                  <p className="mt-1 text-sm leading-relaxed text-ink-600 dark:text-ink-300">
+                    {text}
+                  </p>
                 </div>
               </div>
-            </div>
+            ))}
           </div>
         </div>
       </div>

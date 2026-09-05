@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 
 const experienceData = [
   // Work Experience
@@ -9,12 +9,14 @@ const experienceData = [
     location: "Chicago, IL",
     duration: "Jun 2026 – Present",
     type: "experience",
+    headline:
+      "Cut Firestore reads by 97% and shipped an async GCP reporting pipeline for 1000+ part portfolios.",
     responsibilities: [
       "Maintained a full-stack application for OEM customers, delivering scalable and reliable solutions across frontend and backend systems.",
       "Optimized Firestore data access by eliminating an N+1 query bottleneck, replacing sequential reads with batched collection-group queries (30-record chunks), reducing database calls by 97% and improving report generation performance.",
-      " 2. Built an asynchronous PDF reporting pipeline using GCP Pub/Sub, Cloud Functions, and email delivery, offloading long-running tasks and enabling scalable processing of 1000+ part portfolios.",
-      " Introduced a real-time job progress tracking feature using Firestore subscriptions (onSnapshot) and React Context, reducing listeners by 67% while enabling live progress and ETA updates.",
-      " Improved application security and reliability across repositories by fixing code quality issues, strengthening tenant isolation, handling edge cases, and reducing potential failure cases.",
+      "Built an asynchronous PDF reporting pipeline using GCP Pub/Sub, Cloud Functions, and email delivery, offloading long-running tasks and enabling scalable processing of 1000+ part portfolios.",
+      "Introduced a real-time job progress tracking feature using Firestore subscriptions (onSnapshot) and React Context, reducing listeners by 67% while enabling live progress and ETA updates.",
+      "Improved application security and reliability across repositories by fixing code quality issues, strengthening tenant isolation, handling edge cases, and reducing potential failure cases.",
     ],
     techStack: [
       "Flask",
@@ -34,6 +36,8 @@ const experienceData = [
     location: "Chicago, IL",
     duration: "Jan 2026 – May 2026",
     type: "experience",
+    headline:
+      "Built a ChromaDB RAG pipeline that removed 83% of manual ETL effort and sped up PCAP analysis by 50%.",
     responsibilities: [
       "Built a secure internal RAG pipeline using ChromaDB and Python to automate ETL processing for feature PDFs, reducing manual effort by 83%.",
       "Developed AI-powered code review automation tools through the Nokia LLM Gateway to analyze code context, detect logical issues, and improve engineering review workflows by 20%.",
@@ -57,6 +61,8 @@ const experienceData = [
     location: "Chicago, IL",
     duration: "Sept 2025 – Dec 2025",
     type: "experience",
+    headline:
+      "AI-driven categorization for 200–400 businesses, cutting review time 71% with 90%+ test coverage.",
     responsibilities: [
       "Improved transaction categorization and reporting accuracy by building intelligent filters and real-time category search systems using Node.js and Prisma for 200–400 businesses.",
       "Integrated AI-powered categorization workflows that reduced manual review time by 71% and improved financial reporting accuracy.",
@@ -81,6 +87,8 @@ const experienceData = [
     location: "Charlotte, NC (Remote)",
     duration: "May 2025 – Aug 2025",
     type: "experience",
+    headline:
+      "Secure Node/Express APIs with JWT + Joi that cut invalid requests by 40%; 90%+ Jest coverage.",
     responsibilities: [
       "Developed secure backend services for user portfolio platforms with 6+ personalized pages using Node.js and Express.js.",
       "Implemented JWT authentication and Joi validation to improve access control, reduce invalid API requests by 40%, and strengthen data integrity.",
@@ -109,6 +117,8 @@ const experienceData = [
     location: "Remote",
     duration: "Feb 2023 – Mar 2023",
     type: "experience",
+    headline:
+      "Shipped a Java job-portal app whose new features lifted engagement by 40%.",
     responsibilities: [
       "Engineered an Android (Java) job portal application that streamlined job discovery for candidates while enabling employers to efficiently manage applications and hiring workflows.",
       "Introduced core features like Applications, Management, and User Authentication, resulting in a 40% improvement in user engagement.",
@@ -132,6 +142,8 @@ const experienceData = [
     location: "Chicago, IL",
     duration: "Aug 2024 - May 2026",
     type: "education",
+    headline:
+      "M.S. Computer Science · 3.8 GPA · Graduate Teaching Assistant for Advanced Database Organization.",
     gpa: "3.8/4.0",
     coursework: [
       "Enterprise Web Applications",
@@ -150,6 +162,8 @@ const experienceData = [
     location: "Pune, India",
     duration: "Jan 2020 - Jun 2024",
     type: "education",
+    headline:
+      "B.E. Computer Engineering · 8.93/10 · Android Developer Lead for a 50-student GDSC team.",
     gpa: "8.93/10.0",
     coursework: [
       "Object-Oriented Programming",
@@ -164,287 +178,221 @@ const experienceData = [
   },
 ];
 
+const tabs = [
+  { key: "experience", label: "Work Experience", icon: "work" },
+  { key: "education", label: "Education", icon: "school" },
+];
+
 const EducationExperience = () => {
   const [activeTab, setActiveTab] = useState("experience");
-  const [selectedItem, setSelectedItem] = useState(null);
-  const experienceTabRef = useRef(null);
-  const educationTabRef = useRef(null);
-  const activeBackgroundRef = useRef(null);
-
   const filteredData = experienceData.filter((item) => item.type === activeTab);
+  const [selectedId, setSelectedId] = useState(filteredData[0]?.id);
+  const tabRefs = useRef({});
+  const pillRef = useRef(null);
 
-  // Set the first item as selected when tab changes
+  const selectedItem =
+    filteredData.find((i) => i.id === selectedId) ?? filteredData[0];
+
   useEffect(() => {
-    if (filteredData.length > 0) {
-      setSelectedItem(filteredData[0]);
-    }
+    setSelectedId(experienceData.find((i) => i.type === activeTab)?.id);
   }, [activeTab]);
 
-  const updateActiveBackground = () => {
-    if (!activeBackgroundRef.current) return;
-
-    const activeTabElement =
-      activeTab === "experience"
-        ? experienceTabRef.current
-        : educationTabRef.current;
-    if (activeTabElement) {
-      const { offsetLeft, offsetWidth } = activeTabElement;
-      activeBackgroundRef.current.style.left = `${offsetLeft}px`;
-      activeBackgroundRef.current.style.width = `${offsetWidth}px`;
-    }
-  };
-
-  useEffect(() => {
-    updateActiveBackground();
+  const movePill = useCallback(() => {
+    const el = tabRefs.current[activeTab];
+    if (!el || !pillRef.current) return;
+    pillRef.current.style.left = `${el.offsetLeft}px`;
+    pillRef.current.style.width = `${el.offsetWidth}px`;
   }, [activeTab]);
 
   useEffect(() => {
-    updateActiveBackground();
-    window.addEventListener("resize", updateActiveBackground);
-    return () => window.removeEventListener("resize", updateActiveBackground);
-  }, []);
+    movePill();
+    window.addEventListener("resize", movePill);
+    document.fonts?.ready?.then(movePill);
+    return () => window.removeEventListener("resize", movePill);
+  }, [movePill]);
 
   return (
     <section id="education-experience" className="section">
+      <div className="blob -right-32 top-1/3 h-96 w-96 bg-violet-500/20" aria-hidden="true" />
+
       <div className="container">
-        {/* Section Header */}
-        <div className="text-center mb-16">
-          <h2 className="headline-2 mb-8 text-zinc-900 dark:text-zinc-50">
-            Education and Work Experience
+        <div className="section-head reveal items-center text-center">
+          <span className="eyebrow">02 — Journey</span>
+          <h2 className="headline-2">
+            Education &amp; <span className="text-gradient">work experience</span>
           </h2>
 
-          {/* Tab Navigation */}
-          <div className="flex justify-center mb-12">
-            <div className="inline-flex bg-zinc-100 dark:bg-zinc-800 rounded-xl p-1 relative">
+          {/* Tabs */}
+          <div
+            className="relative mt-2 inline-flex rounded-full border border-ink-200/80 bg-white/70 p-1 backdrop-blur dark:border-white/10 dark:bg-white/[0.04]"
+            role="tablist"
+          >
+            <span
+              ref={pillRef}
+              className="absolute inset-y-1 rounded-full bg-brand-gradient shadow-glow-sm transition-[left,width] duration-300 ease-out"
+              aria-hidden="true"
+            />
+            {tabs.map(({ key, label, icon }) => (
               <button
-                ref={experienceTabRef}
-                onClick={() => setActiveTab("experience")}
-                className={`relative z-10 px-6 py-3 text-sm font-medium rounded-lg transition-colors duration-300 whitespace-nowrap ${
-                  activeTab === "experience"
+                key={key}
+                ref={(el) => (tabRefs.current[key] = el)}
+                role="tab"
+                aria-selected={activeTab === key}
+                onClick={() => setActiveTab(key)}
+                className={`relative z-10 inline-flex items-center gap-2 whitespace-nowrap rounded-full px-4 py-2.5 text-sm font-semibold transition-colors duration-300 sm:px-5 ${
+                  activeTab === key
                     ? "text-white"
-                    : "text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-200"
+                    : "text-ink-600 hover:text-ink-900 dark:text-ink-300 dark:hover:text-white"
                 }`}
               >
-                WORK EXPERIENCE
+                <span className="material-symbols-rounded text-[18px]">{icon}</span>
+                {label}
               </button>
-              <button
-                ref={educationTabRef}
-                onClick={() => setActiveTab("education")}
-                className={`relative z-10 px-6 py-3 text-sm font-medium rounded-lg transition-colors duration-300 whitespace-nowrap ${
-                  activeTab === "education"
-                    ? "text-white"
-                    : "text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-200"
-                }`}
-              >
-                EDUCATION
-              </button>
-
-              {/* Active Tab Background */}
-              <div
-                ref={activeBackgroundRef}
-                className="absolute top-1 bottom-1 bg-gradient-to-r from-emerald-500 to-sky-500 rounded-lg transition-all duration-300 ease-in-out"
-              ></div>
-            </div>
+            ))}
           </div>
         </div>
 
-        {/* Two Column Layout */}
-        <div className="max-w-7xl mx-auto">
-          <div className="grid lg:grid-cols-5 gap-8">
-            {/* Left Column - Company/Institution Cards */}
-            <div className="lg:col-span-2 space-y-4">
-              {filteredData.map((item) => (
-                <div
-                  key={item.id}
-                  onClick={() => setSelectedItem(item)}
-                  className={`group cursor-pointer transition-all duration-300 ${
-                    selectedItem?.id === item.id
-                      ? "transform scale-105"
-                      : "hover:transform hover:scale-102"
-                  }`}
-                >
-                  <div
-                    className={`relative p-6 rounded-2xl border backdrop-blur-sm transition-all duration-300 ${
-                      selectedItem?.id === item.id
-                        ? "border-sky-300 dark:border-sky-600 bg-gradient-to-br from-sky-50 to-emerald-50 dark:from-sky-900/20 dark:to-emerald-900/20 shadow-xl shadow-sky-500/10"
-                        : "border-zinc-200 dark:border-zinc-700 bg-white/80 dark:bg-zinc-900/80 hover:border-sky-300 dark:hover:border-sky-600 hover:shadow-xl hover:shadow-sky-500/10"
+        <div className="grid gap-6 lg:grid-cols-[0.9fr_1.4fr] lg:gap-8">
+          {/* Timeline list */}
+          <ol className="reveal relative space-y-3 lg:pl-6">
+            <span
+              className="absolute bottom-6 left-[3px] top-6 hidden w-px bg-gradient-to-b from-brand-400/0 via-brand-400/60 to-brand-400/0 lg:block"
+              aria-hidden="true"
+            />
+            {filteredData.map((item) => {
+              const active = selectedItem?.id === item.id;
+              return (
+                <li key={item.id} className="relative">
+                  <span
+                    className={`absolute -left-[1.62rem] top-7 hidden h-2.5 w-2.5 rounded-full ring-4 ring-[#f7f7fb] transition-colors dark:ring-ink-950 lg:block ${
+                      active ? "bg-brand-500" : "bg-ink-300 dark:bg-ink-600"
+                    }`}
+                    aria-hidden="true"
+                  />
+                  <button
+                    onClick={() => setSelectedId(item.id)}
+                    aria-pressed={active}
+                    className={`card w-full p-5 text-left transition-all ${
+                      active
+                        ? "border-brand-300/70 shadow-glow-sm dark:border-brand-400/50"
+                        : "card-hover"
                     }`}
                   >
-                    {/* Company/Institution Icon */}
-                    <div className="flex items-center gap-3 mb-3">
-                      <div
-                        className={`w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-300 ${
-                          selectedItem?.id === item.id
-                            ? "bg-gradient-to-br from-sky-400 to-emerald-500 shadow-lg"
-                            : "bg-gradient-to-br from-emerald-400 to-sky-500"
-                        }`}
-                      >
-                        <span className="material-symbols-rounded text-white text-xl">
-                          {item.type === "experience" ? "business" : "school"}
-                        </span>
-                      </div>
-                      <div className="flex-1">
-                        <h3
-                          className={`font-semibold text-lg leading-tight transition-colors ${
-                            selectedItem?.id === item.id
-                              ? "text-sky-700 dark:text-sky-300"
-                              : "text-zinc-900 dark:text-zinc-50 group-hover:text-sky-600 dark:group-hover:text-sky-400"
-                          }`}
-                        >
-                          {item.company}
-                        </h3>
-                        <p className="text-sm text-zinc-600 dark:text-zinc-400 mt-1">
-                          {item.location}
+                    <div className="flex items-start justify-between gap-3">
+                      <div className="min-w-0">
+                        <h3 className="title-1 truncate">{item.company}</h3>
+                        <p className="mt-0.5 truncate text-sm text-ink-600 dark:text-ink-300">
+                          {item.position}
                         </p>
                       </div>
-                    </div>
-
-                    {/* Duration Badge */}
-                    <div className="flex items-center justify-between">
                       <span
-                        className={`px-3 py-1 text-xs font-medium rounded-full transition-colors ${
-                          selectedItem?.id === item.id
-                            ? "bg-sky-100 text-sky-700 dark:bg-sky-900/30 dark:text-sky-300"
-                            : item.type === "experience"
-                              ? "bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300"
-                              : "bg-sky-100 text-sky-700 dark:bg-sky-900/30 dark:text-sky-300"
+                        className={`material-symbols-rounded shrink-0 text-[20px] transition-transform ${
+                          active ? "translate-x-0 text-brand-500" : "-translate-x-1 text-ink-400"
                         }`}
                       >
-                        {item.type === "experience"
-                          ? "Work Experience"
-                          : "Education"}
-                      </span>
-                      <span className="text-xs text-zinc-500 dark:text-zinc-400">
-                        {item.duration}
+                        arrow_forward
                       </span>
                     </div>
+                    {item.headline && (
+                      <p className="mt-2 text-[13px] leading-snug text-ink-700 dark:text-ink-200">
+                        {item.headline}
+                      </p>
+                    )}
+                    <div className="mt-3 flex flex-wrap items-center gap-2 text-xs text-ink-500 dark:text-ink-400">
+                      <span className={active ? "chip-brand" : "chip"}>{item.duration}</span>
+                      <span className="inline-flex items-center gap-1">
+                        <span className="material-symbols-rounded text-[16px]">location_on</span>
+                        {item.location}
+                      </span>
+                    </div>
+                  </button>
+                </li>
+              );
+            })}
+          </ol>
+
+          {/* Detail panel */}
+          <div className="reveal" style={{ transitionDelay: "120ms" }}>
+            {selectedItem && (
+              <article
+                key={selectedItem.id}
+                className="card animate-reveal p-6 sm:p-8 lg:sticky lg:top-24"
+              >
+                <div className="flex items-start gap-4">
+                  <span className="icon-tile h-14 w-14 rounded-2xl">
+                    <span className="material-symbols-rounded text-[26px]">
+                      {selectedItem.type === "experience" ? "work" : "school"}
+                    </span>
+                  </span>
+                  <div className="min-w-0">
+                    <h3 className="font-display text-2xl font-semibold tracking-tight">
+                      {selectedItem.position}
+                    </h3>
+                    <p className="mt-1 font-medium text-brand-600 dark:text-brand-300">
+                      {selectedItem.company}
+                    </p>
                   </div>
                 </div>
-              ))}
-            </div>
 
-            {/* Right Column - Detailed Information */}
-            <div className="lg:col-span-3">
-              {selectedItem && (
-                <div className="sticky top-8">
-                  <div className="relative p-8 rounded-2xl border border-zinc-200 dark:border-zinc-700 bg-white/80 dark:bg-zinc-900/80 backdrop-blur-sm shadow-xl">
-                    {/* Header */}
-                    <div className="mb-6">
-                      <div className="flex items-center gap-3 mb-4">
-                        <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-sky-400 to-emerald-500 flex items-center justify-center shadow-lg">
-                          <span className="material-symbols-rounded text-white text-2xl">
-                            {selectedItem.type === "experience"
-                              ? "work"
-                              : "school"}
-                          </span>
-                        </div>
-                        <div>
-                          <h2 className="text-2xl font-bold text-zinc-900 dark:text-zinc-50 mb-1">
-                            {selectedItem.company}
-                          </h2>
-                          <p className="text-sky-600 dark:text-sky-400 font-medium">
-                            {selectedItem.position}
-                          </p>
-                        </div>
-                      </div>
-
-                      <div className="flex items-center gap-6 text-sm text-zinc-600 dark:text-zinc-400">
-                        <span className="flex items-center gap-2">
-                          <span className="material-symbols-rounded text-lg">
-                            location_on
-                          </span>
-                          {selectedItem.location}
-                        </span>
-                        <span className="flex items-center gap-2">
-                          <span className="material-symbols-rounded text-lg">
-                            schedule
-                          </span>
-                          {selectedItem.duration}
-                        </span>
-                        {selectedItem.type === "education" && (
-                          <span className="flex items-center gap-2">
-                            <span className="material-symbols-rounded text-lg text-amber-500">
-                              grade
-                            </span>
-                            <span className="font-medium">
-                              GPA: {selectedItem.gpa}
-                            </span>
-                          </span>
-                        )}
-                      </div>
-                    </div>
-
-                    {/* Content */}
-                    <div className="space-y-6">
-                      {selectedItem.type === "experience" ? (
-                        <div>
-                          <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-50 mb-4 flex items-center gap-2">
-                            <span className="material-symbols-rounded text-emerald-500">
-                              star
-                            </span>
-                            Key Achievements
-                          </h3>
-                          <div className="space-y-4">
-                            {selectedItem.responsibilities.map(
-                              (responsibility, idx) => (
-                                <div
-                                  key={idx}
-                                  className="flex items-start gap-3"
-                                >
-                                  <div className="w-2 h-2 rounded-full bg-gradient-to-r from-emerald-400 to-sky-400 mt-2 flex-shrink-0"></div>
-                                  <p className="text-zinc-700 dark:text-zinc-300 leading-relaxed">
-                                    {responsibility}
-                                  </p>
-                                </div>
-                              ),
-                            )}
-                          </div>
-
-                          {/* Tech Stack */}
-                          <div className="mt-6">
-                            <h4 className="text-lg font-semibold text-zinc-900 dark:text-zinc-50 mb-3 flex items-center gap-2">
-                              <span className="material-symbols-rounded text-sky-500">
-                                code
-                              </span>
-                              Technologies Used
-                            </h4>
-                            <div className="flex flex-wrap gap-2">
-                              {selectedItem.techStack.map((tech, idx) => (
-                                <span
-                                  key={idx}
-                                  className="px-4 py-2 text-sm font-medium bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 rounded-lg hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-all duration-200"
-                                >
-                                  {tech}
-                                </span>
-                              ))}
-                            </div>
-                          </div>
-                        </div>
-                      ) : (
-                        <div>
-                          <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-50 mb-4 flex items-center gap-2">
-                            <span className="material-symbols-rounded text-sky-500">
-                              menu_book
-                            </span>
-                            Relevant Coursework
-                          </h3>
-                          <div className="flex flex-wrap gap-2">
-                            {selectedItem.coursework.map((course, idx) => (
-                              <span
-                                key={idx}
-                                className="px-4 py-2 text-sm font-medium bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 rounded-lg hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-all duration-200"
-                              >
-                                {course}
-                              </span>
-                            ))}
-                          </div>
-                        </div>
-                      )}
-                    </div>
-                  </div>
+                <div className="mt-5 flex flex-wrap gap-x-6 gap-y-2 text-sm text-ink-600 dark:text-ink-300">
+                  <span className="inline-flex items-center gap-1.5">
+                    <span className="material-symbols-rounded text-[18px]">location_on</span>
+                    {selectedItem.location}
+                  </span>
+                  <span className="inline-flex items-center gap-1.5">
+                    <span className="material-symbols-rounded text-[18px]">schedule</span>
+                    {selectedItem.duration}
+                  </span>
+                  {selectedItem.type === "education" && (
+                    <span className="inline-flex items-center gap-1.5 font-medium">
+                      <span className="material-symbols-rounded text-[18px] text-amber-500">grade</span>
+                      GPA: {selectedItem.gpa}
+                    </span>
+                  )}
                 </div>
-              )}
-            </div>
+
+                <div className="divider my-6" />
+
+                {selectedItem.type === "experience" ? (
+                  <>
+                    <h4 className="mb-4 flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-ink-500 dark:text-ink-400">
+                      <span className="material-symbols-rounded text-[18px] text-brand-500">star</span>
+                      Key achievements
+                    </h4>
+                    <ul className="space-y-3">
+                      {selectedItem.responsibilities.map((r, idx) => (
+                        <li key={idx} className="flex gap-3">
+                          <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-brand-gradient" />
+                          <p className="text-[15px] leading-relaxed text-ink-700 dark:text-ink-200">{r}</p>
+                        </li>
+                      ))}
+                    </ul>
+
+                    <h4 className="mb-3 mt-7 flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-ink-500 dark:text-ink-400">
+                      <span className="material-symbols-rounded text-[18px] text-brand-500">code</span>
+                      Technologies used
+                    </h4>
+                    <div className="flex flex-wrap gap-2">
+                      {selectedItem.techStack.map((tech) => (
+                        <span key={tech} className="chip">{tech}</span>
+                      ))}
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    <h4 className="mb-3 flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-ink-500 dark:text-ink-400">
+                      <span className="material-symbols-rounded text-[18px] text-brand-500">menu_book</span>
+                      Relevant coursework
+                    </h4>
+                    <div className="flex flex-wrap gap-2">
+                      {selectedItem.coursework.map((course) => (
+                        <span key={course} className="chip">{course}</span>
+                      ))}
+                    </div>
+                  </>
+                )}
+              </article>
+            )}
           </div>
         </div>
       </div>

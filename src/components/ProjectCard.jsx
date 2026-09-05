@@ -1,51 +1,86 @@
 import PropTypes from "prop-types";
 
-const ProjectCard = ({ imgSrc, title, tags, projectLink, classes }) => {
-  return (
-    <div
-      className={
-        "relative p-6 rounded-2xl border border-zinc-200 dark:border-zinc-700 bg-white/80 dark:bg-zinc-900/80 backdrop-blur-sm hover:border-sky-300 dark:hover:border-sky-600 hover:shadow-xl hover:shadow-sky-500/10 transition-all duration-300 h-[420px] flex flex-col group" +
-        (classes ? " " + classes : "")
-      }
-    >
-      <figure className="img-box aspect-square rounded-lg mb-4 overflow-hidden bg-zinc-300 dark:bg-zinc-700">
-        <img src={imgSrc} alt={title} loading="lazy" className="img-cover w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
-      </figure>
+const ProjectCard = ({ project, onOpen, classes = "" }) => {
+  const { imgSrc, title, category, tagline, tags, projectLink, stats, caseStudy } = project;
 
-      <div className="flex flex-col flex-grow">
-        <div className="flex-grow">
-          <h3 className="title-1 mb-3 line-clamp-2 min-h-[3.5rem] leading-tight text-zinc-900 dark:text-zinc-50 group-hover:text-sky-600 dark:group-hover:text-sky-400 transition-colors">{title}</h3>
-          <div className="flex flex-wrap items-center gap-2 mb-4">
-            {tags.map((label, key) => (
-              <span
-                key={key}
-                className="h-8 text-sm text-zinc-600 dark:text-zinc-400 bg-zinc-100 dark:bg-zinc-800 grid items-center px-3 rounded-lg whitespace-nowrap hover:bg-sky-50 dark:hover:bg-sky-900/20 transition-colors"
-              >
-                {label}
-              </span>
+  return (
+    <article className={`card card-hover group flex h-full flex-col overflow-hidden ${classes}`}>
+      <button
+        type="button"
+        onClick={() => onOpen(project)}
+        className="img-box relative aspect-[4/3] w-full text-left focus:outline-none"
+        aria-label={`Open case study: ${title}`}
+      >
+        <img
+          src={imgSrc}
+          alt={title}
+          loading="lazy"
+          className="img-cover transition-transform duration-500 group-hover:scale-[1.04]"
+        />
+        <span className="absolute inset-x-0 bottom-0 flex items-center justify-between bg-gradient-to-t from-ink-950/70 to-transparent px-4 pb-3 pt-10 text-xs font-semibold text-white opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+          {caseStudy ? "View case study" : "View details"}
+          <span className="material-symbols-rounded text-[18px]">north_east</span>
+        </span>
+      </button>
+
+      <div className="flex flex-1 flex-col p-5">
+        <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-brand-600 dark:text-brand-300">
+          {category}
+        </p>
+        <h3 className="title-1 mt-1.5 line-clamp-2 transition-colors group-hover:text-brand-600 dark:group-hover:text-brand-300">
+          <button type="button" onClick={() => onOpen(project)} className="text-left focus:outline-none">
+            {title}
+          </button>
+        </h3>
+        <p className="mt-2 line-clamp-3 text-sm leading-relaxed text-ink-600 dark:text-ink-300">{tagline}</p>
+
+        {stats && (
+          <div className="mt-4 grid grid-cols-3 gap-2 border-y border-ink-200/70 py-3 dark:border-white/[0.06]">
+            {stats.map((s) => (
+              <div key={s.label} className="min-w-0">
+                <p className="truncate font-display text-sm font-semibold">{s.value}</p>
+                <p className="text-[10px] leading-tight uppercase tracking-wider text-ink-500 dark:text-ink-400">{s.label}</p>
+              </div>
             ))}
           </div>
-        </div>
-        
-        <div className="flex items-center justify-end mt-auto">
-          <div className="w-11 h-11 rounded-lg grid place-items-center bg-sky-400 text-zinc-950 shrink-0 hover:bg-sky-300 group-hover:scale-110 transition-all duration-300 shadow-lg">
-            <span className="material-symbols-rounded" aria-hidden="true">
-              arrow_outward
+        )}
+
+        <div className="mt-3 flex flex-wrap gap-1.5">
+          {tags.slice(0, 4).map((label) => (
+            <span key={label} className="chip">
+              {label}
             </span>
-          </div>
+          ))}
+          {tags.length > 4 && <span className="chip">+{tags.length - 4}</span>}
+        </div>
+
+        <div className="mt-auto flex items-center justify-between pt-4">
+          <button
+            type="button"
+            onClick={() => onOpen(project)}
+            className="inline-flex items-center gap-1 text-sm font-semibold text-brand-600 hover:text-brand-700 dark:text-brand-300 dark:hover:text-brand-200"
+          >
+            {caseStudy ? "Case study" : "Details"}
+            <span className="material-symbols-rounded text-[18px]">arrow_forward</span>
+          </button>
+          <a
+            href={projectLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`Open ${title}`}
+            className="grid h-9 w-9 place-items-center rounded-full border border-ink-200/80 text-ink-700 transition-colors hover:border-brand-300 hover:text-brand-600 dark:border-white/10 dark:text-ink-200 dark:hover:border-brand-400/50 dark:hover:text-brand-300"
+          >
+            <span className="material-symbols-rounded text-[18px]">arrow_outward</span>
+          </a>
         </div>
       </div>
-
-      <a href={projectLink} target="_blank" rel="noopener noreferrer" className="absolute inset-0 rounded-2xl focus:ring-2 focus:ring-sky-400 focus:outline-none"></a>
-    </div>
+    </article>
   );
 };
 
 ProjectCard.propTypes = {
-  imgSrc: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
-  tags: PropTypes.array.isRequired,
-  projectLink: PropTypes.string,
+  project: PropTypes.object.isRequired,
+  onOpen: PropTypes.func.isRequired,
   classes: PropTypes.string,
 };
 
